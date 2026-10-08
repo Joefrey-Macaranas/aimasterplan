@@ -1,0 +1,32 @@
+# deps
+node_modules/
+
+# expo
+.expo/
+dist/
+dist-*/
+web-build/
+
+# native builds
+android/build/
+android/.gradle/
+android/app/build/
+android/local.properties
+ios/build/
+ios/Pods/
+
+# signing — NEVER commit keys (back up separately!)
+*.keystore
+*.jks
+
+# binaries (ship via GitHub Releases, not git)
+*.apk
+*.aab
+*.ipa
+
+# test / tooling artifacts
+.playwright-mcp/
+*.log
+
+# os
+.DS_Store

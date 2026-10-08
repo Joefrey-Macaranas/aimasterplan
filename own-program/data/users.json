@@ -1,0 +1,32 @@
+{
+  "qa1791450022@example.com": {
+    "email": "qa1791450022@example.com",
+    "name": "qa1791450022",
+    "passHash": "dev-53d0ef09",
+    "provider": "password",
+    "emailVerified": true,
+    "avatarUrl": null,
+    "experienceLevel": "none",
+    "learningGoals": [],
+    "currentLevel": 1,
+    "enrollmentStatus": "active",
+    "role": "student",
+    "createdAt": "2026-10-08T09:00:22.743Z",
+    "recoveryNonce": null
+  },
+  "g.student@example.com": {
+    "email": "g.student@example.com",
+    "name": "Google Student",
+    "passHash": null,
+    "provider": "google",
+    "emailVerified": true,
+    "avatarUrl": null,
+    "experienceLevel": "none",
+    "learningGoals": [],
+    "currentLevel": 1,
+    "enrollmentStatus": "active",
+    "role": "student",
+    "createdAt": "2026-10-08T09:00:22.849Z",
+    "recoveryNonce": null
+  }
+}

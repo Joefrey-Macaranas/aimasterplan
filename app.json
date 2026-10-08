@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "AI-MasterPlan",
+    "slug": "ai-masterplan",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "aimasterplan",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B1020"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.aimasterplan.app"
+    },
+    "android": {
+      "package": "com.aimasterplan.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0B1020"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-av",
+      "expo-asset",
+      "expo-font",
+      "expo-video"
+    ],
+    "experiments": {}
+  }
+}

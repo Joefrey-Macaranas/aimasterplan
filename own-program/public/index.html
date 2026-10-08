@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-MasterPlan</title>
+<meta name="description" content="From zero coding to independent AI builder — learn by building.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand">▲ AI-MasterPlan</div>
+    <nav class="nav">
+      <a href="#/roadmap">Roadmap</a><a href="#/onboard">Onboarding</a><a href="#/meet">Meet</a><a href="#/community">Community</a><a href="#/tools">Tools</a><a href="#/projects">Projects</a><a href="#/planner">Planner</a><a href="#/assistant">Assistant</a><a href="#/progress">Progress</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">BEGINNER-FRIENDLY • NO CODING REQUIRED</p>
+    <h1>From zero coding to independent AI builder.</h1>
+    <p class="sub">Learn by building: Vibe Coding, AI automation, apps, full systems. WHY before HOW, step-by-step, reproducible projects.</p>
+    <div class="cta">
+      <button id="startBtn" class="gold">Start at Level 1 — What is AI?</button>
+      <a class="ghost" href="#/roadmap">Explore Levels 1–10</a>
+    </div>
+    <div id="health" class="health">checking server…</div>
+  </section>
+
+  <section>
+    <h2>Student journey</h2>
+    <ol id="journey" class="journey"></ol>
+  </section>
+
+  <section id="onboard">
+    <h2>Beginner onboarding wizard</h2>
+    <p class="muted">3 questions → 8 big ideas → your starting plan. Same engine as the app.</p>
+    <div class="authgrid">
+      <div>
+        <h3>1 • Have you coded before?</h3>
+        <select id="oCoded" class="search"><option value="never">Never — total beginner</option><option value="little">A little — copied/edited</option><option value="yes">Yes — built something</option></select>
+        <h3>2 • Used AI coding tools?</h3>
+        <select id="oAI" class="search"><option value="never">Never</option><option value="chat">ChatGPT for ideas</option><option value="agent">Yes — coding assistant</option></select>
+        <h3>3 • What do you want to build?</h3>
+        <select id="oGoal" class="search"><option value="website">Website</option><option value="mobile">Mobile App</option><option value="automation">AI Automation</option><option value="agent">AI Agent</option><option value="business">Business System</option><option value="saas">SaaS</option><option value="personal">Personal Project</option></select>
+        <button id="oBtn" class="gold">Explain + recommend me</button>
+      </div>
+      <div>
+        <h3>8 big ideas (plain words)</h3>
+        <div id="oExp" class="plan">Vibe Coding • AI-assisted dev • Prompts • Frontend/backend • APIs • Databases • Deployment • AI models — press the button to see your path through them.</div>
+      </div>
+      <div>
+        <h3>Your plan</h3>
+        <pre id="oOut" class="plan">Answer left, get plan here.</pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <h2>Course roadmap — Levels 1–10 <span id="lcount" class="pill"></span></h2>
+    <p class="muted">Tap a lesson to check it off. Progress saves on this device (localStorage). 40 lessons total.</p>
+    <div class="bar"><div id="barFill" class="fill"></div></div>
+    <p id="barLabel" class="muted">0/40 lessons • 0%</p>
+    <div id="levels"></div>
+  </section>
+
+  <section id="tools">
+    <h2>Tools Vault</h2>
+    <input id="q" class="search" placeholder="Search tools… (e.g. git, database)">
+    <div id="tools"></div>
+  </section>
+
+  <section id="projects">
+    <h2>Guided projects P01–P10</h2>
+    <div id="projects"></div>
+  </section>
+
+  <section id="meet">
+    <h2>Weekly Meet &amp; Greet with the Author</h2>
+    <p class="muted">All enrolled students included • weekly recurring • countdown • Q&amp;A voting • recordings.</p>
+    <div id="meetOut" class="plan">Loading session…</div>
+    <input id="meetQ" class="search" placeholder="Submit a question (one sentence + lesson ID)">
+    <div class="cta">
+      <button id="meetQBtn" class="ghost">Submit question</button>
+      <button id="meetAttend" class="gold">Mark me attending</button>
+    </div>
+    <div id="meetQs"></div>
+    <div id="meetArch"></div>
+  </section>
+
+  <section id="community">
+    <h2>Community feed</h2>
+    <p class="muted">Questions • showcase • wins • help • comments • reactions • @mentions • reports. 9 channels.</p>
+    <input id="cQ" class="search" placeholder="Search feed…">
+    <div id="cChannels" class="cta"></div>
+    <div id="cFeed"></div>
+    <h3>New post</h3>
+    <div class="cta">
+      <select id="cCh" class="search"></select>
+      <select id="cKind" class="search"><option value="question">❓ question</option><option value="showcase">🚀 showcase</option><option value="win">🏆 win</option><option value="help">🙏 help</option><option value="general">💬 general</option></select>
+    </div>
+    <input id="cBody" class="search" placeholder="Share, ask with lesson ID, @mention…">
+    <button id="cPost" class="gold">Post</button>
+  </section>
+
+  <section id="planner">
+    <h2>Project Planner (save + track + update)</h2>
+    <textarea id="idea" rows="3">I want an AI system that automatically answers Facebook inquiries and saves leads.</textarea>
+    <div class="cta">
+      <button id="planBtn" class="gold">Generate my plan</button>
+      <button id="savePlanBtn" class="ghost">Save Project</button>
+    </div>
+    <pre id="planOut" class="plan">Your plan appears here.</pre>
+    <h3>Saved projects — track todos, update idea</h3>
+    <div id="savedPlans"></div>
+  </section>
+
+  <section id="assistant">
+    <h2>Learning Assistant (context-aware)</h2>
+    <p class="muted">Knows lesson + skill + project + history. Hints first, never ahead.</p>
+    <div class="cta">
+      <select id="askLesson" class="search"></select>
+      <select id="askProj" class="search"><option value="">No project</option></select>
+    </div>
+    <div id="askChips" class="cta"></div>
+    <input id="askQ" class="search" placeholder="Ask: explain, error, next, code, prompt, check my work…">
+    <div class="cta">
+      <button id="askBtn" class="gold">Ask tutor</button>
+      <button id="hintBtn" class="ghost">Bigger hint</button>
+    </div>
+    <pre id="askOut" class="plan">Tutor answers appear here.</pre>
+  </section>
+
+  <section id="account">
+    <h2>Student accounts (own auth)</h2>
+    <p class="muted">Email/password + Google/Apple (demo) • persistent login (token in localStorage) • email verify • password recovery • roles: student/instructor/author/admin.</p>
+    <div id="meOut" class="plan">Signed out.</div>
+    <div class="authgrid">
+      <div>
+        <h3>Register / Sign in</h3>
+        <input id="aEmail" class="search" placeholder="you@example.com" autocomplete="email">
+        <input id="aPass" class="search" type="password" placeholder="Password (8+ chars)" autocomplete="current-password">
+        <div class="cta">
+          <button id="regBtn" class="gold">Register</button>
+          <button id="loginBtn" class="ghost">Sign in</button>
+        </div>
+        <div class="cta">
+          <button id="googleBtn" class="ghost">G Continue with Google (demo)</button>
+          <button id="appleBtn" class="ghost"> Continue with Apple (demo)</button>
+        </div>
+      </div>
+      <div>
+        <h3>Verify / Recover</h3>
+        <input id="aCode" class="search" placeholder="6-digit code">
+        <div class="cta">
+          <button id="verifyBtn" class="ghost">Verify email</button>
+          <button id="recBtn" class="ghost">Send recovery code</button>
+        </div>
+        <input id="aNew" class="search" type="password" placeholder="New password">
+        <div class="cta">
+          <button id="resetBtn2" class="ghost">Reset password</button>
+          <button id="logoutBtn" class="ghost">Sign out</button>
+        </div>
+      </div>
+      <div>
+        <h3>Profile (9 fields)</h3>
+        <input id="pName" class="search" placeholder="Name">
+        <input id="pAvatar" class="search" placeholder="Photo URL (optional)">
+        <div class="cta">
+          <button id="saveProfile" class="gold">Save profile</button>
+          <select id="pRole" class="search">
+            <option value="student">student</option><option value="instructor">instructor</option><option value="author">author</option><option value="admin">admin</option>
+          </select>
+        </div>
+        <p class="muted">Name • photo • experience • goals • level • modules • projects • certificates • enrollment — shown below after sign-in.</p>
+      </div>
+    </div>
+    <pre id="authOut" class="plan">Auth messages appear here.</pre>
+  </section>
+
+  <section id="progress">
+    <h2>Progress</h2>
+    <div id="progOut" class="plan">Complete lessons above to grow XP.</div>
+    <button id="resetBtn" class="ghost">Reset my progress</button>
+  </section>
+
+  <footer class="foot">AI-MasterPlan • vanilla HTML/CSS/JS + built-in Node http • <span id="sig">signature: loading…</span></footer>
+</main>
+<script src="/app.js"></script>
+</body>
+</html>
