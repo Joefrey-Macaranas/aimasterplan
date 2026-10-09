@@ -12,7 +12,7 @@
   <div class="wrap top-in">
     <div class="brand">▲ AI-MasterPlan</div>
     <nav class="nav">
-      <a href="#/roadmap">Roadmap</a><a href="#/onboard">Onboarding</a><a href="#/meet">Meet</a><a href="#/community">Community</a><a href="#/tools">Tools</a><a href="#/projects">Projects</a><a href="#/planner">Planner</a><a href="#/assistant">Assistant</a><a href="#/progress">Progress</a>
+      <a href="#/roadmap">Roadmap</a><a href="#/onboard">Onboarding</a><a href="#/meet">Meet</a><a href="#/community">Community</a><a href="#/cms">CMS</a><a href="#/notify">Notify</a><a href="#/enroll">Enroll</a><a href="#/certs">Certs</a><a href="#/tools">Tools</a><a href="#/projects">Projects</a><a href="#/planner">Planner</a><a href="#/assistant">Assistant</a><a href="#/progress">Progress</a>
     </nav>
   </div>
 </header>
@@ -87,6 +87,50 @@
     </div>
     <div id="meetQs"></div>
     <div id="meetArch"></div>
+  </section>
+
+  <section id="cms">
+    <h2>Author CMS dashboard</h2>
+    <p class="muted">Levels, lessons, tools, projects, purchases, moderation queue.</p>
+    <div id="cmsOut" class="plan">Loading dashboard…</div>
+    <div id="cmsMod"></div>
+  </section>
+
+  <section id="notify">
+    <h2>Notifications (9 triggers)</h2>
+    <p class="muted">Push on device • in-page reminders here. Enable browser notifications for tomorrow nudges.</p>
+    <div class="cta">
+      <button id="nEnable" class="gold">Enable reminders</button>
+    </div>
+    <div id="nList"></div>
+  </section>
+
+  <section id="enroll">
+    <h2>Enrollment</h2>
+    <p class="muted">Pending → Active → Completed • free audit • one-time • subscription • coupons • scholarships • receipts.</p>
+    <div class="cta">
+      <select id="ePlan" class="search"><option value="free-audit">Free Audit ($0)</option><option value="lifetime">Lifetime ($149)</option><option value="monthly">Monthly ($19/mo)</option></select>
+      <input id="eCoupon" class="search" placeholder="Coupon: WELCOME20">
+    </div>
+    <input id="eEmail" class="search" placeholder="you@example.com">
+    <input id="eStory" class="search" placeholder="Scholarship story (20+ chars, for SCHOLAR100)">
+    <div class="cta">
+      <button id="eQuote" class="ghost">Quote</button>
+      <button id="eBuy" class="gold">Enroll (demo)</button>
+    </div>
+    <pre id="eOut" class="plan">Quote + receipts appear here.</pre>
+    <div id="eHist"></div>
+  </section>
+
+  <section id="certs">
+    <h2>Certificates</h2>
+    <p class="muted">Module certificates (20) + final program certificate • ID + verify URL/QR • author signature • download + share.</p>
+    <div class="cta">
+      <input id="certEmail" class="search" placeholder="you@example.com">
+      <button id="certBtn" class="gold">Show my certificates</button>
+    </div>
+    <pre id="certOut" class="plan">Enter your email to preview IDs + verify links.</pre>
+    <div id="certMods"></div>
   </section>
 
   <section id="community">
@@ -182,7 +226,12 @@
   <section id="progress">
     <h2>Progress</h2>
     <div id="progOut" class="plan">Complete lessons above to grow XP.</div>
-    <button id="resetBtn" class="ghost">Reset my progress</button>
+    <p id="goalLine" class="muted"></p>
+    <div class="cta">
+      <button id="goalDown" class="ghost">− goal</button>
+      <button id="goalUp" class="ghost">+ goal</button>
+      <button id="resetBtn" class="ghost">Reset my progress</button>
+    </div>
   </section>
 
   <footer class="foot">AI-MasterPlan • vanilla HTML/CSS/JS + built-in Node http • <span id="sig">signature: loading…</span></footer>

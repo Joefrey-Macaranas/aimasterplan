@@ -6,13 +6,14 @@ import { Link } from 'expo-router';
 import * as Clipboard from 'expo-clipboard';
 import { Theme } from '../theme';
 import type { LessonStep, Chapter } from '../types/models';
+import { MelroseIcon, MELROSE, type MelroseName } from './icons';
 
-const KIND_META: Record<LessonStep['kind'], { label: string; icon: string; help: string }> = {
-  USER_ACTION: { label: 'USER ACTION — YOU DO THIS', icon: '👉', help: 'Follow this exactly — no guessing. Opens the Tools Vault when you need an app.' },
-  AI_PROMPT: { label: 'AI PROMPT — COPY PROMPT', icon: '💬', help: 'Tap Copy Prompt, paste into your AI assistant, press Enter.' },
-  TERMINAL_COMMAND: { label: 'TERMINAL COMMAND — COPY COMMAND', icon: '⌨', help: 'Tap Copy Command, paste into your terminal, press Enter.' },
-  CODE: { label: 'CODE — COPY CODE', icon: '📝', help: 'Tap Copy Code — this is the exact code from the walkthrough.' },
-  EXPECTED_RESULT: { label: 'EXPECTED RESULT — WHAT SHOULD I SEE?', icon: '✅', help: 'Compare your screen with the description + screenshot frame. Different? Read “What if mine looks different?”' },
+const KIND_META: Record<LessonStep['kind'], { label: string; icon: MelroseName; help: string }> = {
+  USER_ACTION: { label: 'USER ACTION — YOU DO THIS', icon: MELROSE.userAction as MelroseName, help: 'Follow this exactly — no guessing. Opens the Tools Vault when you need an app.' },
+  AI_PROMPT: { label: 'AI PROMPT — COPY PROMPT', icon: MELROSE.aiPrompt as MelroseName, help: 'Tap Copy Prompt, paste into your AI assistant, press Enter.' },
+  TERMINAL_COMMAND: { label: 'TERMINAL COMMAND — COPY COMMAND', icon: MELROSE.terminal as MelroseName, help: 'Tap Copy Command, paste into your terminal, press Enter.' },
+  CODE: { label: 'CODE — COPY CODE', icon: MELROSE.code as MelroseName, help: 'Tap Copy Code — this is the exact code from the walkthrough.' },
+  EXPECTED_RESULT: { label: 'EXPECTED RESULT — WHAT SHOULD I SEE?', icon: MELROSE.expectedResult as MelroseName, help: 'Compare your screen with the description + screenshot frame. Different? Read “What if mine looks different?”' },
 };
 
 const COPY_LABEL: Partial<Record<LessonStep['kind'], string>> = {
@@ -52,10 +53,13 @@ export function CopyBlock({ step, index, shotCaption }: { step: LessonStep; inde
   return (
     <View style={styles.block}>
       <View style={styles.row}>
-        <Text style={styles.kind}>
-          {meta.icon} {typeof index === 'number' ? `STEP ${index + 1} • ` : ''}
-          {meta.label}
-        </Text>
+        <View style={styles.kindRow}>
+          <MelroseIcon name={meta.icon} size={14} color={Theme.colors.muted} />
+          <Text style={styles.kind}>
+            {typeof index === 'number' ? `STEP ${index + 1} • ` : ''}
+            {meta.label}
+          </Text>
+        </View>
         {copyable ? (
           <Pressable onPress={onCopy} style={[styles.btn, copied && styles.btnDone]} accessibilityLabel={COPY_LABEL[step.kind]}>
             <Text style={styles.btnText}>{copied ? 'Copied ✓' : COPY_LABEL[step.kind]}</Text>
@@ -63,7 +67,10 @@ export function CopyBlock({ step, index, shotCaption }: { step: LessonStep; inde
         ) : step.kind === 'USER_ACTION' ? (
           <Link href="/tools" asChild>
             <Pressable style={styles.toolBtn} accessibilityLabel="Open Tool">
-              <Text style={styles.toolBtnText}>Open Tool ↗</Text>
+              <View style={styles.toolBtnRow}>
+                <Text style={styles.toolBtnText}>Open Tool</Text>
+                <MelroseIcon name="external-link" size={13} color={Theme.colors.accent} />
+              </View>
             </Pressable>
           </Link>
         ) : (
@@ -81,7 +88,10 @@ export function CopyBlock({ step, index, shotCaption }: { step: LessonStep; inde
       </View>
       {step.kind === 'EXPECTED_RESULT' && (
         <View style={styles.shot}>
-          <Text style={styles.shotTitle}>🖼 Screenshot — what success looks like</Text>
+          <View style={styles.shotTitleRow}>
+            <MelroseIcon name="image" size={14} color={Theme.colors.text} />
+            <Text style={styles.shotTitle}>Screenshot — what success looks like</Text>
+          </View>
           <View style={styles.shotFrame}>
             <Text style={styles.shotText}>{shotCaption ?? 'Walkthrough frame at this step: success message + expected screen (video shows it).'}</Text>
           </View>
@@ -109,7 +119,12 @@ export function Chapters({ chapters, onSeek }: { chapters: Chapter[]; onSeek?: (
         <Pressable key={`${c.time}-${c.title}`} onPress={() => onSeek?.(c)} style={styles.chRow}>
           <Text style={styles.time}>{c.time}</Text>
           <Text style={styles.chTitle}>{c.title}</Text>
-          {onSeek ? <Text style={styles.jump}>Jump ›</Text> : null}
+          {onSeek ? (
+            <View style={styles.jumpRow}>
+              <Text style={styles.jump}>Jump</Text>
+              <MelroseIcon name="chevron-right" size={13} color={Theme.colors.muted} />
+            </View>
+          ) : null}
         </Pressable>
       ))}
     </View>
@@ -119,6 +134,7 @@ export function Chapters({ chapters, onSeek }: { chapters: Chapter[]; onSeek?: (
 const styles = StyleSheet.create({
   block: { borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 0, padding: 20, marginVertical: 8, backgroundColor: Theme.colors.card },
   row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 8 },
+  kindRow: { flexDirection: 'row', alignItems: 'center', gap: 6, flex: 1 },
   kind: { color: Theme.colors.muted, fontFamily: Theme.fonts.bold, fontSize: 11, letterSpacing: 2, flex: 1, textTransform: 'uppercase' },
   label: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 15, marginTop: 8 },
   help: { color: Theme.colors.muted, fontFamily: Theme.fonts.regular, fontSize: 12, marginBottom: 8, marginTop: 2 },
@@ -129,10 +145,12 @@ const styles = StyleSheet.create({
   btnDone: { backgroundColor: Theme.colors.success, borderColor: Theme.colors.success },
   btnText: { color: Theme.colors.onPrimary, fontFamily: Theme.fonts.bold, fontSize: 12, letterSpacing: 1, textTransform: 'uppercase' },
   toolBtn: { backgroundColor: Theme.colors.surface, borderWidth: 1, borderColor: Theme.colors.accent, borderRadius: 0, paddingHorizontal: 18, paddingVertical: 10, alignItems: 'center' },
+  toolBtnRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   toolBtnText: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold, fontSize: 12, letterSpacing: 1, textTransform: 'uppercase' },
   whyPill: { backgroundColor: Theme.colors.surface, borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 0, paddingHorizontal: 12, paddingVertical: 6 },
   whyPillText: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold, fontSize: 11 },
   shot: { marginTop: 12, borderTopWidth: 1, borderTopColor: Theme.colors.border, paddingTop: 10 },
+  shotTitleRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   shotTitle: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 13 },
   shotFrame: { borderWidth: 2, borderStyle: 'dashed', borderColor: Theme.colors.success, borderRadius: 0, padding: 16, marginTop: 8, backgroundColor: Theme.colors.surface },
   shotText: { color: Theme.colors.muted, fontFamily: Theme.fonts.regular, fontSize: 13, textAlign: 'center' },
@@ -143,5 +161,6 @@ const styles = StyleSheet.create({
   chRow: { flexDirection: 'row', gap: 12, paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: Theme.colors.border, alignItems: 'center' },
   time: { color: Theme.colors.accent, fontFamily: Theme.fonts.monoBold, width: 56 },
   chTitle: { color: Theme.colors.text, fontFamily: Theme.fonts.regular, flex: 1, fontSize: 14 },
+  jumpRow: { flexDirection: 'row', alignItems: 'center', gap: 2 },
   jump: { color: Theme.colors.muted, fontFamily: Theme.fonts.bold },
 });

@@ -170,6 +170,100 @@ const server = http.createServer((req, res) => {
   if (p === '/api/tools') return send(res, 200, JSON.stringify({ tools: TOOLS.map((t) => ({ name: t[0], cat: t[1], what: t[2], price: t[3], icon: t[4] })), categories: 12 }), MIME['.json']);
   if (p === '/api/projects') return send(res, 200, JSON.stringify({ projects: PROJECTS.map((x) => ({ id: x[0], title: x[1], level: x[2], req: x[3], arch: x[4], stack: x[5], setup: x[6], stages: x[7], deploy: x[8], done: x[9] })) }), MIME['.json']);
   if (p === '/api/plan') return send(res, 200, JSON.stringify(planFor(u.searchParams.get('idea'))), MIME['.json']);
+  if (p === '/api/cms') {
+    let reports = [];
+    try {
+      const all = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'community.json'), 'utf8'));
+      reports = all.filter((x) => (x.reports || 0) > 0).map((x) => ({ id: x.id, author: x.author, reports: x.reports }));
+    } catch { /* none */ }
+    let purchases = 0;
+    try { purchases = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'purchases.json'), 'utf8')).length; } catch { /* none */ }
+    const lessons = LEVELS.reduce((n, lv) => n + lv.modules.reduce((a, m) => a + m.lessons.length, 0), 0);
+    return send(res, 200, JSON.stringify({
+      dashboard: { levels: LEVELS.length, lessons, tools: TOOLS.length, projects: PROJECTS.length, purchases, pendingReports: reports.length },
+      moderation: reports,
+    }), MIME['.json']);
+  }
+  if (p === '/api/notify') {
+    return send(res, 200, JSON.stringify({ triggers: [
+      { label: 'New module', hint: 'A new module lands in your path.' },
+      { label: 'New lesson', hint: 'A fresh walkthrough is ready.' },
+      { label: 'Continue learning', hint: 'Daily nudge with your next lesson.' },
+      { label: 'Weekly Meet & Greet', hint: '24h before the session.' },
+      { label: 'Meeting starting soon', hint: '1h before the session.' },
+      { label: 'Instructor announcement', hint: 'Tips + course news.' },
+      { label: 'Comment / reply', hint: 'Someone answered you.' },
+      { label: 'Achievement unlocked', hint: 'The moment a badge is earned.' },
+      { label: 'Project milestone', hint: 'Stage and project completions.' },
+    ] }), MIME['.json']);
+  }
+  // --- enrollment commerce: products, quotes, purchases, history, invoices ---
+  const PRODUCTS = [
+    { id: 'free-audit', title: 'Free Audit', kind: 'free', price: 0 },
+    { id: 'lifetime', title: 'Lifetime Access', kind: 'once', price: 14900 },
+    { id: 'monthly', title: 'Monthly Plan', kind: 'sub', price: 1900 },
+  ];
+  const COUPONS = { WELCOME20: 20, BUILDER50: 50, SCHOLAR100: 100 };
+  const money = (c) => '$' + (c / 100).toFixed(2);
+  const quoteFor = (pid, code, story) => {
+    const pr = PRODUCTS.find((x) => x.id === pid);
+    if (!pr) return { ok: false, error: 'unknown plan' };
+    if (pr.kind === 'free') return { ok: true, quote: { subtotal: 0, discount: 0, total: 0, free: true } };
+    let pct = 0;
+    if (String(code || '').trim()) {
+      const c = String(code).trim().toUpperCase();
+      if (!COUPONS[c]) return { ok: false, error: 'bad code (try WELCOME20)' };
+      if (c === 'SCHOLAR100' && String(story || '').trim().length < 20) return { ok: false, error: 'SCHOLAR100 needs your story (20+ chars)' };
+      pct = COUPONS[c];
+    }
+    const d = Math.round((pr.price * pct) / 100);
+    return { ok: true, quote: { subtotal: pr.price, discount: d, total: pr.price - d, coupon: code ? String(code).trim().toUpperCase() : undefined, free: pr.price - d === 0 } };
+  };
+  if (p === '/api/products') return send(res, 200, JSON.stringify({ products: PRODUCTS, coupons: Object.keys(COUPONS) }), MIME['.json']);
+  if (p === '/api/enroll/quote' && req.method === 'POST') {
+    return readJson(req).then((b) => send(res, 200, JSON.stringify(quoteFor(b.productId, b.coupon, b.story)), MIME['.json']));
+  }
+  if (p === '/api/enroll/purchase' && req.method === 'POST') {
+    return readJson(req).then((b) => {
+      const email = String(b.email || '').toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return send(res, 400, JSON.stringify({ ok: false, error: 'invalid email' }), MIME['.json']);
+      const q = quoteFor(b.productId, b.coupon, b.story);
+      if (!q.ok) return send(res, 400, JSON.stringify(q), MIME['.json']);
+      const at = new Date().toISOString();
+      let h = 0;
+      for (const c of email + b.productId + at) h = (Math.imul(h, 31) + c.charCodeAt(0)) >>> 0;
+      const inv = { id: 'INV-' + h.toString(16).toUpperCase().padStart(8, '0'), email, productId: b.productId, ...q.quote, at };
+      DATA_MKDIR();
+      const F = path.join(__dirname, 'data', 'purchases.json');
+      let all = [];
+      try { all = JSON.parse(fs.readFileSync(F, 'utf8')); } catch { /* fresh */ }
+      all.unshift(inv);
+      try { fs.writeFileSync(F, JSON.stringify(all, null, 2)); } catch { /* read-only */ }
+      return send(res, 200, JSON.stringify({ ok: true, invoice: inv, receipt: `AI-MasterPlan receipt\nInvoice ${inv.id}\n${email} • ${b.productId}\n${money(inv.subtotal)} - ${money(inv.discount)} = ${money(inv.total)}` }), MIME['.json']);
+    });
+  }
+  if (p === '/api/billing' && req.method === 'GET') {
+    const email = String(u.searchParams.get('email') || '').toLowerCase();
+    let all = [];
+    try { all = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'purchases.json'), 'utf8')); } catch { /* none */ }
+    return send(res, 200, JSON.stringify({ purchases: all.filter((x) => !email || x.email === email) }), MIME['.json']);
+  }
+  if (p === '/api/cert') {
+    const email = String(u.searchParams.get('email') || 'student').toLowerCase();
+    const hash = (s) => { let h = 0; s = String(s); for (const c of s) h = (Math.imul(h, 31) + c.charCodeAt(0)) >>> 0; return 'AMP-' + h.toString(16).toUpperCase().padStart(8, '0'); };
+    const date = new Date().toISOString().slice(0, 10);
+    const mods = LEVELS.flatMap((lv) => lv.modules.map((m) => {
+      const id = hash(email + '#' + m.id + '#AI-MasterPlan');
+      return { moduleId: m.id, title: m.title, certId: id, url: 'https://verify.aimasterplan.app/c/' + id };
+    }));
+    const fin = hash(email + '-AI-MasterPlan');
+    return send(res, 200, JSON.stringify({
+      ok: true, student: email, program: 'Independent AI System Builder (AI-MasterPlan)', date,
+      signature: 'The AI-MasterPlan Author, Course Author & Vibe Coding Coach',
+      final: { certId: fin, url: 'https://verify.aimasterplan.app/c/' + fin },
+      modules: mods,
+    }), MIME['.json']);
+  }
   if (p === '/api/community' && req.method === 'GET') {
     return send(res, 200, JSON.stringify({ channels: CHANNELS, posts: community() }), MIME['.json']);
   }

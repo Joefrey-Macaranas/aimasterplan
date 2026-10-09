@@ -23,6 +23,10 @@ create table certificates(id text primary key, user_id uuid references users(id)
 -- Auth: OAuth accounts (Google/Apple) + password recovery tokens (hashed in prod).
 create table oauth_accounts(id uuid primary key default gen_random_uuid(), user_id uuid references users(id) on delete cascade, provider text not null, provider_sub text not null, email text, created_at timestamptz default now(), unique(provider, provider_sub));
 create table recovery_tokens(id uuid primary key default gen_random_uuid(), user_id uuid references users(id) on delete cascade, token_hash text not null, expires_at timestamptz not null, used boolean default false);
+-- Enrollment commerce: products, coupons, purchases (invoices/receipts).
+create table products(id text primary key, title text not null, kind text not null, price_cents int not null default 0, perks jsonb default '[]');
+create table coupons(code text primary key, pct_off int not null, note text, needs_application boolean default false);
+create table purchases(id text primary key, user_id uuid references users(id) on delete cascade, product_id text references products(id), subtotal int not null, discount int not null default 0, total int not null, coupon text, kind text not null, created_at timestamptz default now());
 -- RLS: enable + policies (premium lessons visible to active enrollments; users read own progress)
 alter table lesson_progress enable row level security;
 alter table certificates enable row level security;

@@ -16,6 +16,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 import { Theme } from '../theme';
+import { Svg, Path, Circle } from 'react-native-svg';
+import { MelroseIcon, type MelroseName } from './icons';
 
 export const IS_TABLET_QUERY = Theme.breakpoints.tablet;
 
@@ -86,13 +88,16 @@ export function Divider() {
   return <View style={styles.divider} />;
 }
 
-export function Chip({ label, tone = 'default' }: { label: string; tone?: 'default' | 'success' | 'warning' | 'accent' }) {
+export function Chip({ label, tone = 'default', icon }: { label: string; tone?: 'default' | 'success' | 'warning' | 'accent'; icon?: MelroseName }) {
   const bg =
     tone === 'success' ? '#e6f4ea' : tone === 'warning' ? '#fef7e0' : tone === 'accent' ? '#000000' : Theme.colors.surface;
   const fg = tone === 'success' ? Theme.colors.success : tone === 'warning' ? Theme.colors.warning : tone === 'accent' ? '#fff' : Theme.colors.muted;
   return (
     <View style={[styles.chip, { backgroundColor: bg, borderColor: Theme.colors.border }]}>
-      <Text style={[styles.chipText, { color: fg }]}>{label}</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+        {icon ? <MelroseIcon name={icon} size={13} color={fg} /> : null}
+        <Text style={[styles.chipText, { color: fg }]}>{label}</Text>
+      </View>
     </View>
   );
 }
@@ -187,16 +192,46 @@ export function EmptyState({ title, hint }: { title: string; hint: string }) {
 }
 
 // Small platform note (e.g. "On Android: … / On iOS: …") — keeps instructions correct per OS.
+// Melrose style: thin info line-icon + hairline dashed card, no emoji.
 export function PlatformNote({ ios, android }: { ios?: string; android?: string }) {
   const msg = Platform.select({ ios, android, default: ios ?? android });
   if (!msg) return null;
   return (
     <Card style={styles.platNote}>
-      <Muted>
-        {Platform.OS === 'ios' ? 'ⓘ iOS: ' : Platform.OS === 'android' ? 'ⓘ Android: ' : 'ⓘ Note: '}
-        {msg}
-      </Muted>
+      <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
+        <MelroseIcon name="info" size={15} color={Theme.colors.muted} />
+        <Muted>
+          {Platform.OS === 'ios' ? 'iOS: ' : Platform.OS === 'android' ? 'Android: ' : 'Note: '}
+          {msg}
+        </Muted>
+      </View>
     </Card>
+  );
+}
+
+// Rocket icon — Melrose style: thin black line, no gold fill, used in Deploy tab
+export function RocketIcon({ size = 20, color }: { size?: number; color?: string }) {
+  const ink = color ?? Theme.colors.primary;
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M4.5 16.5c-1.5 1.5-3 3.375-3 5.25a3.75 3.75 0 0 0 7.5 0c0-1.875-1.5-3.75-3-5.25z"
+        stroke={ink}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <Path
+        d="M9 12c0-1.5 1.125-3 2.25-3.375a3.375 3.375 0 0 1 6.75 0c0 3-2.25 4.5-3 6.75a3.375 3.375 0 0 1-6.75 0c-1.125 0-2.25-1.5-2.25-3.375z"
+        stroke={ink}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <Circle cx="12.4" cy="7.1" r="1.1" stroke={ink} strokeWidth="1.5" fill="none" />
+    </Svg>
   );
 }
 

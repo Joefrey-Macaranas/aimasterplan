@@ -1,15 +1,17 @@
 // Achievements — gamified wins from first lesson to independent builder.
+// Melrose style: thin award/lock line-icons, no emoji.
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { Theme } from '../src/theme';
 import { ACHIEVEMENTS } from '../src/data/gamification';
 import { Screen, H1, Body, Muted, Eyebrow, Card, Chip, ProgressBar, LinkButton, Grid } from '../src/components/ui';
+import { MelroseIcon } from '../src/components/icons';
 import { useProgress } from '../src/store/store';
-import { achievementsFor, xpBreakdown } from '../src/lib/gamification';
+import { achievementsFor, xpBreakdownFull } from '../src/lib/gamification';
 
 export default function AchievementsScreen() {
-  const { completed } = useProgress();
-  const mine = achievementsFor(completed, 0);
-  const { total } = xpBreakdown(completed);
+  const { completed, completedProjects, projectStageCount } = useProgress();
+  const mine = achievementsFor(completed, completedProjects);
+  const { total } = xpBreakdownFull(completed, projectStageCount);
   const pct = ACHIEVEMENTS.length ? Math.round((mine.length / ACHIEVEMENTS.length) * 100) : 0;
 
   return (
@@ -25,7 +27,7 @@ export default function AchievementsScreen() {
             return (
               <Card key={a.id} style={got ? s.got : s.locked}>
                 <View style={s.row}>
-                  <Text style={s.emoji}>{got ? '🏆' : '🔒'}</Text>
+                  <MelroseIcon name={got ? 'award' : 'lock'} size={26} color={got ? Theme.colors.success : Theme.colors.muted} />
                   <Chip label={`+${a.xp} XP`} tone={got ? 'success' : 'default'} />
                 </View>
                 <Text style={s.t}>{a.title}</Text>
@@ -44,7 +46,6 @@ export default function AchievementsScreen() {
 
 const s = StyleSheet.create({
   row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  emoji: { fontSize: 28 },
   t: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 16, marginTop: 8 },
   got: { borderColor: Theme.colors.success },
   locked: { opacity: 0.85 },

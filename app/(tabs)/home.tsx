@@ -2,15 +2,15 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { PRODUCT, JOURNEY_MAP, LEARNING_PHILOSOPHY } from '../../src/constants/branding';
 import { useProgress, useAuth } from '../../src/store/store';
 import { overallProgress } from '../../src/lib/progress';
-import { xpBreakdown } from '../../src/lib/gamification';
+import { xpBreakdownFull } from '../../src/lib/gamification';
 import { LESSONS, LEVELS, getModulesForLevel } from '../../src/data/curriculum';
 import { Screen, H1, H2, Body, Muted, Eyebrow, Card, Chip, ProgressBar, LinkButton, Bullet, Grid } from '../../src/components/ui';
 
 export default function Home() {
-  const { completed } = useProgress();
+  const { completed, streak, completedProjects, projectStageCount } = useProgress();
   const { auth } = useAuth();
   const pct = overallProgress(completed);
-  const { total, level } = xpBreakdown(completed);
+  const { total, level } = xpBreakdownFull(completed, projectStageCount);
   const next = LESSONS.find((l) => !completed.includes(l.id));
   const nextLevel = next ? LEVELS.find((lv) => getModulesForLevel(lv.id).some((m) => m.id === next.moduleId)) : undefined;
 
@@ -23,7 +23,7 @@ export default function Home() {
 
         <Card>
           <Muted>
-            OVERALL PROGRESS • {completed.length}/{LESSONS.length} LESSONS • {total} XP • LEVEL {level}
+            OVERALL PROGRESS • {completed.length}/{LESSONS.length} LESSONS • {completedProjects} PROJECTS • {total} XP • LEVEL {level} • STREAK {streak}
           </Muted>
           <ProgressBar pct={pct} />
           <Muted>{pct}% complete — small steps every day compound.</Muted>
@@ -39,8 +39,8 @@ export default function Home() {
               <Body>
                 {next.objective} • {next.minutes} min{nextLevel ? ` • Level ${nextLevel.index}: ${nextLevel.title}` : ''}
               </Body>
-              <LinkButton href={`/lesson/${next.id}`} title="▶ Continue lesson (WHY first, then HOW)" />
-              <LinkButton href={`/video/${next.id}`} title="▶ Play recorded walkthrough" />
+              <LinkButton href={`/lesson/${next.id}`} title="Continue lesson (WHY first, then HOW)" />
+              <LinkButton href={`/video/${next.id}`} title="Play recorded walkthrough" />
             </>
           ) : (
             <>

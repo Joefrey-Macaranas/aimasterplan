@@ -1,13 +1,13 @@
 // Project workspace — guided build surface: plan → stages → prompts → test → deploy.
 // Route: /project/<projectId> (e.g. /project/P01)
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect } from 'react';
 import { Theme } from '../../src/theme';
 import { PROJECTS } from '../../src/data/projects';
-import { Screen, H1, H2, Body, Muted, Eyebrow, Card, Chip, ProgressBar, LinkButton, Segmented } from '../../src/components/ui';
+import { Screen, H1, H2, Body, Muted, Eyebrow, Card, Chip, ProgressBar, LinkButton, Segmented, RocketIcon } from '../../src/components/ui';
+import { MelroseIcon } from '../../src/components/icons';
+import { useProgress } from '../../src/store/store';
 
 const TABS = ['Setup', 'Stages', 'Prompts', 'Testing', 'Deploy'] as const;
 type Tab = (typeof TABS)[number];
@@ -17,21 +17,9 @@ export default function ProjectWorkspace() {
   const pid = String(id);
   const project = PROJECTS.find((p) => p.id === pid);
   const [tab, setTab] = useState<Tab>('Setup');
-  const [done, setDone] = useState<string[]>([]);
-
-  useEffect(() => {
-    AsyncStorage.getItem(`amp-proj-${pid}`).then((s) => {
-      if (s) setDone(JSON.parse(s));
-    });
-  }, [pid]);
-  useEffect(() => {
-    AsyncStorage.setItem(`amp-proj-${pid}`, JSON.stringify(done)).catch(() => {});
-  }, [done, pid]);
-
-  const pct = useMemo(() => {
-    if (!project || !project.stages.length) return 0;
-    return Math.round((done.length / project.stages.length) * 100);
-  }, [done, project]);
+  const { projectDone, toggleProjectStage, projectPct } = useProgress();
+  const done = projectDone[pid] ?? [];
+  const pct = project ? projectPct(pid) : 0;
 
   if (!project) {
     return (
@@ -42,7 +30,7 @@ export default function ProjectWorkspace() {
     );
   }
 
-  const toggle = (st: string) => setDone((d) => (d.includes(st) ? d.filter((x) => x !== st) : [...d, st]));
+  const toggle = (st: string) => toggleProjectStage(pid, st);
   const handholding = project.level <= 4 ? 'Full guidance — every click shown' : project.level <= 7 ? 'Medium guidance — checklists + hints' : project.level <= 9 ? 'Low guidance — plan + review points' : 'Independent — you plan, AI critiques';
 
   return (
@@ -113,9 +101,10 @@ export default function ProjectWorkspace() {
             })}
             <H2>Final checklist (ship criteria)</H2>
             {project.checklist.map((c) => (
-              <Text key={c} style={s.li}>
-                ☐ {c}
-              </Text>
+              <View key={c} style={s.checkRow}>
+                <MelroseIcon name="square" size={14} color={Theme.colors.muted} />
+                <Text style={s.li}>{c}</Text>
+              </View>
             ))}
           </>
         )}
@@ -148,7 +137,10 @@ export default function ProjectWorkspace() {
             <H2>If it breaks</H2>
             {project.debugging.map((d) => (
               <Card key={d}>
-                <Body>🔧 {d}</Body>
+                <View style={s.debugRow}>
+                  <MelroseIcon name="tool" size={15} color={Theme.colors.text} />
+                  <Body>{d}</Body>
+                </View>
               </Card>
             ))}
           </>
@@ -159,7 +151,10 @@ export default function ProjectWorkspace() {
             <H2>Ship it</H2>
             {project.deployment.map((d) => (
               <Card key={d}>
-                <Body>🚀 {d}</Body>
+                <View style={s.deployRow}>
+                  <RocketIcon size={18} />
+                  <Text style={s.deployText}>{d}</Text>
+                </View>
               </Card>
             ))}
             <Card style={pct === 100 ? s.shipped : undefined}>
@@ -183,9 +178,13 @@ const s = StyleSheet.create({
   stageNum: { color: Theme.colors.primary, fontFamily: Theme.fonts.black, fontSize: 18, width: 28, textAlign: 'center' },
   stageT: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 15 },
   stageS: { color: Theme.colors.muted, fontFamily: Theme.fonts.regular, fontSize: 12, marginTop: 2 },
-  li: { color: Theme.colors.text, fontFamily: Theme.fonts.regular, fontSize: 14, lineHeight: 21, marginVertical: 2 },
+  li: { color: Theme.colors.text, fontFamily: Theme.fonts.regular, fontSize: 14, lineHeight: 21, marginVertical: 2, flex: 1 },
+  checkRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 8, marginVertical: 2 },
+  debugRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 8 },
   prompt: { color: Theme.colors.text, fontFamily: Theme.fonts.mono, fontSize: 13, lineHeight: 19, marginTop: 6 },
   shipped: { borderColor: Theme.colors.success },
+  deployRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  deployText: { color: Theme.colors.text, fontFamily: Theme.fonts.regular, fontSize: 14, lineHeight: 21, flex: 1 },
 });
 
 export function generateStaticParams() {

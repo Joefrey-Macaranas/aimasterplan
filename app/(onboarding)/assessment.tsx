@@ -1,7 +1,7 @@
 // Beginner onboarding wizard — 3 questions → 8 plain-words explainers → personalized plan.
 // Steps: 1 coded? • 2 AI tools? • 3 build goal (7) • 4–11 explainers • 12 recommendation.
 import { useMemo, useState } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Theme } from '../../src/theme';
@@ -45,18 +45,19 @@ export default function Assessment() {
 
   return (
     <Screen>
-      {step.kind !== 'done' ? (
-        <>
-          <Eyebrow>
-            BEGINNER WIZARD • STEP {Math.min(stepIndex + 1, TOTAL_STEPS)} OF {TOTAL_STEPS}
-          </Eyebrow>
-          <ProgressBar pct={wizardProgress(stepIndex, TOTAL_STEPS)} />
-        </>
-      ) : (
-        <Eyebrow>YOUR PERSONAL STARTING PLAN • SAVED TO PROFILE</Eyebrow>
-      )}
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.scrollContent}>
+        {step.kind !== 'done' ? (
+          <>
+            <Eyebrow>
+              BEGINNER WIZARD • STEP {Math.min(stepIndex + 1, TOTAL_STEPS)} OF {TOTAL_STEPS}
+            </Eyebrow>
+            <ProgressBar pct={wizardProgress(stepIndex, TOTAL_STEPS)} />
+          </>
+        ) : (
+          <Eyebrow>YOUR PERSONAL STARTING PLAN • SAVED TO PROFILE</Eyebrow>
+        )}
 
-      {step.kind === 'q1' && (
+        {step.kind === 'q1' && (
         <>
           <H1>Have you coded before?</H1>
           <Body>No wrong answers — this sets your hand-holding level.</Body>
@@ -199,11 +200,13 @@ export default function Assessment() {
         </>
       )}
       <View style={{ height: 24 }} />
+      </ScrollView>
     </Screen>
   );
 }
 
 const s = StyleSheet.create({
+  scrollContent: { paddingBottom: 24 },
   opt: { backgroundColor: Theme.colors.card, borderWidth: 1, borderColor: Theme.colors.border, padding: 16, borderRadius: Theme.radius.md, marginVertical: 6, minHeight: 64, justifyContent: 'center' },
   optT: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 16 },
   optH: { color: Theme.colors.muted, fontFamily: Theme.fonts.regular, fontSize: 13, marginTop: 2 },

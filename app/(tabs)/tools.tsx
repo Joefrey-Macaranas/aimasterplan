@@ -1,5 +1,6 @@
 // PHASE 09 — Tools Vault: name, icon, category, what, why, free/paid,
 // install, setup walkthrough, website, related tutorials (tappable).
+// NOTE: tools keep their own brand logos/icons — Melrose conversion skips this vault.
 import { useState } from 'react';
 import { ScrollView, View, Text, TextInput, Pressable, StyleSheet, Linking, Image } from 'react-native';
 import { Link } from 'expo-router';
@@ -7,6 +8,7 @@ import { Theme } from '../../src/theme';
 import { TOOLS, TOOL_CATEGORIES } from '../../src/data/tools';
 import { getLesson } from '../../src/data/curriculum';
 import { Screen, H1, H2, Body, Muted, Eyebrow, Card, Chip } from '../../src/components/ui';
+import { MelroseIcon } from '../../src/components/icons';
 
 // Each tool's own brand logo, bundled locally (offline-first).
 const LOGOS: Record<string, number> = {
@@ -109,7 +111,10 @@ export default function Tools() {
                   if (!l) return null;
                   return (
                     <Link key={rid} href={`/lesson/${rid}` as never}>
-                      <Text style={s.rel}>▶ {rid} — {l.title}</Text>
+                      <View style={s.relRow}>
+                        <MelroseIcon name="play" size={13} color={Theme.colors.accent} />
+                        <Text style={s.rel}>{rid} — {l.title}</Text>
+                      </View>
                     </Link>
                   );
                 })}
@@ -136,7 +141,8 @@ const s = StyleSheet.create({
   name: { color: Theme.colors.text, fontWeight: '800', fontSize: 17, flex: 1 },
   label: { color: Theme.colors.text, fontWeight: '800', marginTop: 8, fontSize: 13 },
   p: { color: Theme.colors.text, fontSize: 14, lineHeight: 20, marginTop: 2 },
-  rel: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold, fontSize: 14, marginVertical: 4 },
+  rel: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold, fontSize: 14, marginVertical: 4, flex: 1 },
+  relRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginVertical: 4 },
   btn: { backgroundColor: Theme.colors.primary, borderRadius: 0, paddingHorizontal: 14, paddingVertical: 10, marginTop: 10, minHeight: Theme.touch.min, justifyContent: 'center' },
   btnT: { color: '#fff', fontFamily: Theme.fonts.bold },
   btnGhost: { borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 0, paddingHorizontal: 14, paddingVertical: 10, marginTop: 10, minHeight: Theme.touch.min, justifyContent: 'center' },

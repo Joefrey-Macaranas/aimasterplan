@@ -3,11 +3,11 @@
 import type { CommunityPost, PostKind } from '../types/models';
 
 export const POST_KINDS: { id: PostKind; label: string; icon: string }[] = [
-  { id: 'question', label: 'Questions', icon: '❓' },
-  { id: 'showcase', label: 'Project showcase', icon: '🚀' },
-  { id: 'win', label: 'Wins / Milestones', icon: '🏆' },
-  { id: 'help', label: 'Help requests', icon: '🙏' },
-  { id: 'general', label: 'General', icon: '💬' },
+  { id: 'question', label: 'Questions', icon: 'help-circle' },
+  { id: 'showcase', label: 'Project showcase', icon: 'send' },
+  { id: 'win', label: 'Wins / Milestones', icon: 'award' },
+  { id: 'help', label: 'Help requests', icon: 'life-buoy' },
+  { id: 'general', label: 'General', icon: 'message-circle' },
 ];
 
 export const REACTION_EMOJI = ['♥', '🎉', '🙏'] as const;

@@ -54,7 +54,7 @@ export default function ModuleScreen() {
             <Muted>
               {next.objective} • {next.minutes} min
             </Muted>
-            <LinkButton href={`/lesson/${next.id}`} title="▶ Continue this module" />
+            <LinkButton href={`/lesson/${next.id}`} title="Continue this module" />
           </Card>
         )}
 

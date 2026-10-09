@@ -16,6 +16,7 @@ export default function Index() {
   return (
     <Screen>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.inner}>
+        <Text style={s.brand}>AI-MASTERPLAN</Text>
         <Eyebrow>Beginner-friendly • No coding required • Phone + tablet</Eyebrow>
         <Text style={s.t}>Learn to build AI apps.</Text>
         <Text style={s.sub}>{PRODUCT.tagline} Follow guided lessons and recorded walkthroughs, from zero to shipping your own product.</Text>
@@ -31,8 +32,8 @@ export default function Index() {
           </Pressable>
         </Link>
         <Link href="/(auth)/login" asChild>
-          <Pressable style={s.login}>
-            <Text style={s.l}>I have an account — Sign in</Text>
+          <Pressable style={s.loginBtn}>
+            <Text style={s.loginBtnText}>Already have an account? Sign in</Text>
           </Pressable>
         </Link>
 
@@ -74,14 +75,15 @@ export default function Index() {
 
 const s = StyleSheet.create({
   inner: { paddingBottom: 24 },
+  brand: { color: Theme.colors.text, fontFamily: Theme.fonts.display, fontSize: 22, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 8 },
   t: { color: Theme.colors.text, fontFamily: Theme.fonts.display, fontSize: 44, marginTop: 12 },
   sub: { color: Theme.colors.muted, fontFamily: Theme.fonts.regular, fontSize: 16, lineHeight: 25, marginVertical: 14 },
   b: { backgroundColor: Theme.colors.primary, borderWidth: 1, borderColor: Theme.colors.primary, padding: 17, borderRadius: 0, alignItems: 'center', marginTop: 12, minHeight: Theme.touch.min, justifyContent: 'center' },
   bt: { color: Theme.colors.onPrimary, fontFamily: Theme.fonts.bold, fontSize: 14, letterSpacing: 2, textTransform: 'uppercase' },
   ghost: { backgroundColor: 'transparent', borderWidth: 1, borderColor: Theme.colors.text, padding: 16, borderRadius: 0, alignItems: 'center', marginTop: 10, minHeight: Theme.touch.min, justifyContent: 'center' },
   ghostT: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 14, letterSpacing: 2, textTransform: 'uppercase' },
-  login: { minHeight: Theme.touch.min, justifyContent: 'center' },
-  l: { color: Theme.colors.text, marginTop: 16, textAlign: 'center', fontSize: 14, fontFamily: Theme.fonts.bold, textDecorationLine: 'underline' },
+  loginBtn: { backgroundColor: 'transparent', borderWidth: 1, borderColor: Theme.colors.border, padding: 14, borderRadius: 0, alignItems: 'center', marginTop: 10, minHeight: Theme.touch.min, justifyContent: 'center' },
+  loginBtnText: { color: Theme.colors.muted, fontFamily: Theme.fonts.regular, fontSize: 14, letterSpacing: 0.5 },
   stats: { flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 0, marginTop: 28 },
   stat: { width: '50%', padding: 18, borderWidth: 0.5, borderColor: Theme.colors.border, alignItems: 'center' },
   statN: { color: Theme.colors.text, fontFamily: Theme.fonts.display, fontSize: 32 },

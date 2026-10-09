@@ -10,6 +10,7 @@ import { MEETINGS } from '../src/data/gamification';
 import { MEET_AUTHOR, MEET_FORMAT, MEET_ARCHIVE, MEET_QUESTION_SEED, type MeetQuestion } from '../src/data/meet';
 import { countdownTo, countdownLabel, icsFor, nextWeekly, markAttended, addQuestion, toggleUpvote, topQuestions } from '../src/lib/meet';
 import { Screen, H1, H2, Body, Muted, Eyebrow, Card, Chip, LinkButton } from '../src/components/ui';
+import { MelroseIcon } from '../src/components/icons';
 import { useAuth } from '../src/store/store';
 
 const ATT_KEY = 'amp-attendance';
@@ -120,9 +121,10 @@ export default function Meet() {
 
         <H2>Your host — the Author</H2>
         <Card>
-          <Text style={s.author}>
-            {MEET_AUTHOR.emoji} {MEET_AUTHOR.name}
-          </Text>
+          <View style={s.authorRow}>
+            <MelroseIcon name={MEET_AUTHOR.emoji as never} size={18} color={Theme.colors.text} />
+            <Text style={s.author}>{MEET_AUTHOR.name}</Text>
+          </View>
           <Muted>{MEET_AUTHOR.role}</Muted>
           <Body>{MEET_AUTHOR.bio}</Body>
         </Card>
@@ -183,7 +185,10 @@ export default function Meet() {
           <Card key={q.id}>
             <View style={s.row}>
               <Pressable onPress={() => vote(q.id)} style={[s.vote, voted.includes(q.id) && s.voteOn]}>
-                <Text style={s.voteT}>▲ {q.votes}</Text>
+                <View style={s.voteRow}>
+                  <MelroseIcon name="chevron-up" size={14} color={Theme.colors.primary} />
+                  <Text style={s.voteT}>{q.votes}</Text>
+                </View>
               </Pressable>
               <View style={{ flex: 1 }}>
                 <Text style={s.aD}>{q.body}</Text>
@@ -199,7 +204,10 @@ export default function Meet() {
             <Text style={s.aT}>{a.title}</Text>
             <Muted>Held {a.heldOn} • {attended.includes(a.id) ? 'attended ✓' : 'recording below'}</Muted>
             <Pressable onPress={() => Linking.openURL(a.recordingUrl)} style={s.cal}>
-              <Text style={s.calT}>▶ Play recording</Text>
+              <View style={s.calRow}>
+                <MelroseIcon name="play" size={14} color={Theme.colors.accent} />
+                <Text style={s.calT}>Play recording</Text>
+              </View>
             </Pressable>
             <Text style={s.notesH}>Meeting notes:</Text>
             {a.notes.map((n) => (
@@ -224,23 +232,26 @@ export default function Meet() {
 const s = StyleSheet.create({
   row: { flexDirection: 'row', gap: 8, flexWrap: 'wrap', alignItems: 'center' },
   hero: { borderColor: Theme.colors.primary },
-  when: { color: '#fff', fontFamily: Theme.fonts.bold, fontSize: 17, marginTop: 10 },
+  when: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 17, marginTop: 10 },
   count: { color: Theme.colors.success, fontFamily: Theme.fonts.black, fontSize: 26, marginTop: 4 },
   join: { backgroundColor: Theme.colors.success, padding: 16, borderRadius: Theme.radius.sm, marginVertical: 12, alignItems: 'center', minHeight: Theme.touch.min, justifyContent: 'center' },
   joinT: { color: '#052e16', fontFamily: Theme.fonts.bold, fontSize: 17 },
   cal: { backgroundColor: Theme.colors.surface, borderWidth: 1, borderColor: Theme.colors.border, borderRadius: Theme.radius.sm, paddingHorizontal: 14, paddingVertical: 12, minHeight: Theme.touch.min, justifyContent: 'center', marginTop: 6 },
   calOn: { borderColor: Theme.colors.success },
   calT: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold },
-  author: { color: '#fff', fontFamily: Theme.fonts.bold, fontSize: 18 },
+  authorRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  author: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 18 },
   segN: { color: Theme.colors.onPrimary, backgroundColor: Theme.colors.primary, width: 28, height: 28, textAlign: 'center', fontFamily: Theme.fonts.black, fontSize: 16, borderRadius: 14, overflow: 'hidden' },
-  aT: { color: '#fff', fontFamily: Theme.fonts.bold, fontSize: 15 },
+  aT: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 15 },
   mins: { color: Theme.colors.muted, fontFamily: Theme.fonts.regular, fontSize: 12 },
   aD: { color: Theme.colors.text, fontFamily: Theme.fonts.regular, marginTop: 4, lineHeight: 20 },
   archRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 6, borderTopWidth: 1, borderTopColor: Theme.colors.border, marginTop: 6 },
   markT: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold },
-  input: { backgroundColor: Theme.colors.surface, color: '#fff', borderRadius: Theme.radius.md, padding: 12, marginVertical: 6, borderWidth: 1, borderColor: Theme.colors.border, minHeight: 64 },
+  input: { backgroundColor: Theme.colors.surface, color: Theme.colors.text, borderRadius: Theme.radius.md, padding: 12, marginVertical: 6, borderWidth: 1, borderColor: Theme.colors.border, minHeight: 64 },
   vote: { borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 8, minWidth: 56, alignItems: 'center' },
+  voteRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   voteOn: { borderColor: Theme.colors.primary, backgroundColor: Theme.colors.surface },
   voteT: { color: Theme.colors.primary, fontFamily: Theme.fonts.bold },
-  notesH: { color: '#fff', fontFamily: Theme.fonts.bold, marginTop: 8 },
+  calRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  notesH: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, marginTop: 8 },
 });

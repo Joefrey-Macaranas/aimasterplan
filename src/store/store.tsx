@@ -189,20 +189,74 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 }
 export function useAuth() { const v = useContext(AuthCtx); if (!v) throw new Error('AuthProvider missing'); return v; }
 
-const ProgCtx = createContext<{ completed: string[]; toggleComplete(id: string): void; bookmarks: string[]; toggleBookmark(id: string): void } | null>(null);
+const ProgCtx = createContext<{
+  completed: string[]; toggleComplete(id: string): void;
+  bookmarks: string[]; toggleBookmark(id: string): void;
+  activity: string[]; streak: number;
+  projectDone: Record<string, string[]>; toggleProjectStage(pid: string, stage: string): void;
+  projectPct(pid: string): number; completedProjects: number; projectStageCount: number;
+} | null>(null);
 export function ProgressProvider({ children }: { children: React.ReactNode }) {
   const [completed, setCompleted] = useState<string[]>([]);
   const [bookmarks, setBookmarks] = useState<string[]>([]);
+  const [activity, setActivity] = useState<string[]>([]);
+  const [projectDone, setProjectDone] = useState<Record<string, string[]>>({});
   useEffect(() => {
     AsyncStorage.getItem('amp-progress').then((s) => { if (s) { const p = JSON.parse(s); setCompleted(p.completed ?? []); setBookmarks(p.bookmarks ?? []); } });
+    AsyncStorage.getItem('amp-activity').then((s) => { if (s) setActivity(JSON.parse(s)); });
+    // project workspaces share the amp-proj-<id> keys with the workspace screen
+    AsyncStorage.getAllKeys().then((keys) => {
+      const mine = keys.filter((k) => k.startsWith('amp-proj-'));
+      if (!mine.length) return;
+      AsyncStorage.multiGet(mine).then((pairs) => {
+        const map: Record<string, string[]> = {};
+        for (const [k, v] of pairs) {
+          if (!v) continue;
+          try { map[k.replace('amp-proj-', '')] = JSON.parse(v); } catch { /* skip */ }
+        }
+        setProjectDone(map);
+      });
+    });
   }, []);
   useEffect(() => { AsyncStorage.setItem('amp-progress', JSON.stringify({ completed, bookmarks })); }, [completed, bookmarks]);
-  const value = useMemo(() => ({
-    completed,
-    toggleComplete: (id: string) => setCompleted((c) => (c.includes(id) ? c.filter((x) => x !== id) : [...c, id])),
-    bookmarks,
-    toggleBookmark: (id: string) => setBookmarks((b) => (b.includes(id) ? b.filter((x) => x !== id) : [...b, id])),
-  }), [completed, bookmarks]);
+  useEffect(() => { AsyncStorage.setItem('amp-activity', JSON.stringify(activity)); }, [activity]);
+  const value = useMemo(() => {
+    const { currentStreakDayCount } = require('../lib/progress') as typeof import('../lib/progress');
+    const { PROJECTS } = require('../data/projects') as typeof import('../data/projects');
+    const byId = Object.fromEntries(PROJECTS.map((p) => [p.id, p.stages.length]));
+    const stageCount = Object.values(projectDone).reduce((n, arr) => n + arr.length, 0);
+    return {
+      completed,
+      toggleComplete: (id: string) => {
+        setCompleted((c) => {
+          const adding = !c.includes(id);
+          if (adding) setActivity((a) => (a.some((d) => d.slice(0, 10) === new Date().toISOString().slice(0, 10)) ? a : [...a, new Date().toISOString()]));
+          return adding ? [...c, id] : c.filter((x) => x !== id);
+        });
+      },
+      bookmarks,
+      toggleBookmark: (id: string) => setBookmarks((b) => (b.includes(id) ? b.filter((x) => x !== id) : [...b, id])),
+      activity,
+      streak: currentStreakDayCount(activity),
+      projectDone,
+      toggleProjectStage: (pid: string, stage: string) => {
+        setProjectDone((m) => {
+          const cur = m[pid] ?? [];
+          const next = { ...m, [pid]: cur.includes(stage) ? cur.filter((x) => x !== stage) : [...cur, stage] };
+          AsyncStorage.setItem(`amp-proj-${pid}`, JSON.stringify(next[pid])).catch(() => {});
+          return next;
+        });
+        setActivity((a) => (a.some((d) => d.slice(0, 10) === new Date().toISOString().slice(0, 10)) ? a : [...a, new Date().toISOString()]));
+      },
+      projectPct: (pid: string) => {
+        const total = byId[pid] ?? 0;
+        if (!total) return 0;
+        return Math.round((Math.min(total, (projectDone[pid] ?? []).length) / total) * 100);
+      },
+      completedProjects: PROJECTS.filter((p) => (projectDone[p.id] ?? []).length >= p.stages.length && p.stages.length > 0).length,
+      projectStageCount: stageCount,
+    };
+  }, [completed, bookmarks, activity, projectDone]);
   return <ProgCtx.Provider value={value}>{children}</ProgCtx.Provider>;
 }
 export function useProgress() { const v = useContext(ProgCtx); if (!v) throw new Error('ProgressProvider missing'); return v; }

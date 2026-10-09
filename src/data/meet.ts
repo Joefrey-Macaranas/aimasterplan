@@ -8,7 +8,7 @@ export const MEET_AUTHOR: MeetAuthor = {
   name: 'The AI-MasterPlan Author',
   role: 'Course author & Vibe Coding coach',
   bio: 'Built the Levels 1–10 path for total beginners. Hosts every session, debugs live, celebrates every shipped project.',
-  emoji: '🎙️',
+  emoji: 'mic',
 };
 
 export const MEET_FORMAT: MeetSegment[] = [

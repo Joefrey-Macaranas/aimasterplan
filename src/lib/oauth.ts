@@ -28,10 +28,10 @@ export function useGoogleAuth(onSuccess: (acct: OAuthAccount) => void) {
   const ids = googleClientIds();
   const configured = Boolean(ids.web || ids.ios || ids.android);
   const redirectUri = AuthSession.makeRedirectUri({ scheme: 'aimasterplan' } as never);
-  const discovery = AuthSession.useAutoDiscovery(GOOGLE_WELL_KNOWN);
+  const discovery = configured ? AuthSession.useAutoDiscovery(GOOGLE_WELL_KNOWN) : null;
   const [request, response, promptAsync] = AuthSession.useAuthRequest(
     {
-      clientId: (ids.web ?? ids.ios ?? ids.android ?? 'unconfigured') as string,
+      clientId: configured ? (ids.web ?? ids.ios ?? ids.android ?? '') as string : '',
       redirectUri,
       scopes: ['openid', 'profile', 'email'],
       responseType: AuthSession.ResponseType.IdToken,

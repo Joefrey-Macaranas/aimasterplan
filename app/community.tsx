@@ -8,6 +8,7 @@ import { CHANNELS, COMMUNITY_SEED } from '../src/data/gamification';
 import { POST_KINDS, REACTION_EMOJI, REPORT_THRESHOLD, filterPosts, addPost, addComment, toggleReaction, reportPost, parseMentions } from '../src/lib/community';
 import type { CommunityPost, PostKind } from '../src/types/models';
 import { Screen, H1, H2, Body, Muted, Eyebrow, Card, Chip } from '../src/components/ui';
+import { MelroseIcon, REACTION_ICON, type MelroseName } from '../src/components/icons';
 import { useAuth } from '../src/store/store';
 
 const POSTS_KEY = 'amp-community-posts';
@@ -78,11 +79,11 @@ export default function Community() {
         <H2>Channels (9)</H2>
         <View style={s.chips}>
           <Pressable onPress={() => setChannel(null)} style={[s.chip, !channel && s.on]}>
-            <Text style={s.chipT}>All</Text>
+            <Text style={[s.chipT, !channel && s.chipTOn]}>All</Text>
           </Pressable>
           {CHANNELS.map((c) => (
             <Pressable key={c} onPress={() => setChannel(channel === c ? null : c)} style={[s.chip, channel === c && s.on]}>
-              <Text style={s.chipT}>{c}</Text>
+              <Text style={[s.chipT, channel === c && s.chipTOn]}>{c}</Text>
             </Pressable>
           ))}
         </View>
@@ -90,13 +91,14 @@ export default function Community() {
         <H2>Post types</H2>
         <View style={s.chips}>
           <Pressable onPress={() => setKind(null)} style={[s.chip, !kind && s.on]}>
-            <Text style={s.chipT}>All types</Text>
+            <Text style={[s.chipT, !kind && s.chipTOn]}>All types</Text>
           </Pressable>
           {POST_KINDS.map((k) => (
             <Pressable key={k.id} onPress={() => setKind(kind === k.id ? null : k.id)} style={[s.chip, kind === k.id && s.on]}>
-              <Text style={s.chipT}>
-                {k.icon} {k.label}
-              </Text>
+              <View style={s.chipRow}>
+                <MelroseIcon name={k.icon as MelroseName} size={13} color={kind === k.id ? '#fff' : Theme.colors.text} />
+                <Text style={[s.chipT, kind === k.id && s.chipTOn]}>{k.label}</Text>
+              </View>
             </Pressable>
           ))}
         </View>
@@ -106,16 +108,17 @@ export default function Community() {
           <View style={s.chips}>
             {POST_KINDS.map((k) => (
               <Pressable key={k.id} onPress={() => setComposerKind(k.id)} style={[s.chip, composerKind === k.id && s.on]}>
-                <Text style={s.chipT}>
-                  {k.icon} {k.id}
-                </Text>
+                <View style={s.chipRow}>
+                  <MelroseIcon name={k.icon as MelroseName} size={13} color={composerKind === k.id ? '#fff' : Theme.colors.text} />
+                  <Text style={[s.chipT, composerKind === k.id && s.chipTOn]}>{k.id}</Text>
+                </View>
               </Pressable>
             ))}
           </View>
           <View style={s.chips}>
             {CHANNELS.map((c) => (
               <Pressable key={c} onPress={() => setComposerChannel(c)} style={[s.chip, composerChannel === c && s.on]}>
-                <Text style={s.chipT}>{c}</Text>
+                <Text style={[s.chipT, composerChannel === c && s.chipTOn]}>{c}</Text>
               </Pressable>
             ))}
           </View>
@@ -142,7 +145,7 @@ export default function Community() {
             <Card key={p.id}>
               <View style={s.row}>
                 <Chip label={p.channel} tone="accent" />
-                <Chip label={`${kindMeta?.icon ?? ''} ${p.kind}`} />
+                <Chip label={`${p.kind}`} icon={(kindMeta?.icon as MelroseName) ?? 'message-circle'} />
               </View>
               <Text style={s.author}>{p.author}</Text>
               <Mentioned text={p.body} />
@@ -161,14 +164,18 @@ export default function Community() {
                       }}
                       style={[s.react, on && s.reactOn]}
                     >
-                      <Text style={s.reactT}>
-                        {e} {n}
-                      </Text>
+                      <View style={s.reactRow}>
+                        <MelroseIcon name={REACTION_ICON[e] ?? 'heart'} size={13} color={Theme.colors.accent} />
+                        <Text style={s.reactT}>{n}</Text>
+                      </View>
                     </Pressable>
                   );
                 })}
                 <Pressable onPress={() => setOpenComments((o) => (o.includes(p.id) ? o.filter((x) => x !== p.id) : [...o, p.id]))} style={s.react}>
-                  <Text style={s.reactT}>💬 {p.comments.length}</Text>
+                  <View style={s.reactRow}>
+                    <MelroseIcon name="message-circle" size={13} color={Theme.colors.accent} />
+                    <Text style={s.reactT}>{p.comments.length}</Text>
+                  </View>
                 </Pressable>
                 <Pressable
                   onPress={() => {
@@ -177,7 +184,10 @@ export default function Community() {
                   }}
                   style={s.react}
                 >
-                  <Text style={s.reactT}>{isReported ? '⚑ reported' : '⚑ report'}</Text>
+                  <View style={s.reactRow}>
+                    <MelroseIcon name="flag" size={13} color={Theme.colors.accent} />
+                    <Text style={s.reactT}>{isReported ? 'reported' : 'report'}</Text>
+                  </View>
                 </Pressable>
               </View>
               {isReported && <Muted>Thanks — reports hide posts at {REPORT_THRESHOLD}+ for review.</Muted>}
@@ -226,26 +236,29 @@ export default function Community() {
 }
 
 const s = StyleSheet.create({
-  search: { backgroundColor: Theme.colors.card, color: '#fff', borderRadius: Theme.radius.md, padding: 12, marginVertical: 8, borderWidth: 1, borderColor: Theme.colors.border, minHeight: Theme.touch.min },
+  search: { backgroundColor: Theme.colors.card, color: Theme.colors.text, borderRadius: Theme.radius.md, padding: 12, marginVertical: 8, borderWidth: 1, borderColor: Theme.colors.border, minHeight: Theme.touch.min },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginVertical: 8 },
   chip: { backgroundColor: Theme.colors.surface, borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 999, paddingHorizontal: 12, paddingVertical: 10, minHeight: Theme.touch.min, justifyContent: 'center' },
+  chipRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   on: { backgroundColor: Theme.colors.primary, borderColor: Theme.colors.goldBorder },
-  chipT: { color: '#fff', fontFamily: Theme.fonts.bold, fontSize: 12 },
+  chipT: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 12 },
+  chipTOn: { color: '#fff' },
   row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 6, flexWrap: 'wrap' },
-  author: { color: '#fff', fontFamily: Theme.fonts.bold, marginTop: 8 },
+  author: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, marginTop: 8 },
   body: { color: Theme.colors.text, fontFamily: Theme.fonts.regular, marginTop: 4, lineHeight: 20 },
   mention: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold },
-  composer: { backgroundColor: Theme.colors.surface, color: '#fff', borderRadius: Theme.radius.md, padding: 12, marginVertical: 6, borderWidth: 1, borderColor: Theme.colors.border, minHeight: 80 },
+  composer: { backgroundColor: Theme.colors.surface, color: Theme.colors.text, borderRadius: Theme.radius.md, padding: 12, marginVertical: 6, borderWidth: 1, borderColor: Theme.colors.border, minHeight: 80 },
   post: { backgroundColor: Theme.colors.primary, borderWidth: 2, borderColor: Theme.colors.goldBorder, borderRadius: Theme.radius.sm, padding: 14, marginTop: 8, alignItems: 'center', minHeight: Theme.touch.min, justifyContent: 'center' },
   postT: { color: Theme.colors.onPrimary, fontFamily: Theme.fonts.bold },
   postSmall: { backgroundColor: Theme.colors.surface, borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 8, padding: 10, marginTop: 6, alignItems: 'center', minHeight: Theme.touch.min, justifyContent: 'center' },
   postSmallT: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold },
   reacts: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 8 },
   react: { backgroundColor: Theme.colors.surface, borderRadius: 999, paddingHorizontal: 12, paddingVertical: 8, borderWidth: 1, borderColor: Theme.colors.border, minHeight: Theme.touch.min, justifyContent: 'center' },
+  reactRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   reactOn: { borderColor: Theme.colors.primary },
   reactT: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold },
   comments: { marginTop: 8, borderTopWidth: 1, borderTopColor: Theme.colors.border, paddingTop: 8 },
   comment: { backgroundColor: Theme.colors.surface, borderRadius: 8, padding: 10, marginVertical: 4 },
-  commentA: { color: '#fff', fontFamily: Theme.fonts.bold, fontSize: 13 },
-  reply: { backgroundColor: Theme.colors.surface, color: '#fff', borderRadius: 8, padding: 10, marginTop: 6, borderWidth: 1, borderColor: Theme.colors.border, minHeight: Theme.touch.min },
+  commentA: { color: Theme.colors.text, fontFamily: Theme.fonts.bold, fontSize: 13 },
+  reply: { backgroundColor: Theme.colors.surface, color: Theme.colors.text, borderRadius: 8, padding: 10, marginTop: 6, borderWidth: 1, borderColor: Theme.colors.border, minHeight: Theme.touch.min },
 });

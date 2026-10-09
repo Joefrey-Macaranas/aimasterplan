@@ -10,6 +10,7 @@ import { Theme } from '../../src/theme';
 import { getLesson, LESSONS } from '../../src/data/curriculum';
 import { Chapters } from '../../src/components/blocks';
 import { Screen, H1, Body, Muted, Eyebrow, Card, Chip, LinkButton } from '../../src/components/ui';
+import { MelroseIcon } from '../../src/components/icons';
 import { useProgress } from '../../src/store/store';
 import { loadPlayback, savePosition, clearPosition, formatClock, chapterAt } from '../../src/lib/playback';
 
@@ -134,7 +135,10 @@ export default function VideoScreen() {
 
         {saved !== null && (
           <Pressable onPress={resume} style={s.resume}>
-            <Text style={s.resumeT}>▶ Resume where you left off — {formatClock(saved)}</Text>
+            <View style={s.resumeRow}>
+              <MelroseIcon name="play" size={15} color={Theme.colors.onPrimary} />
+              <Text style={s.resumeT}>Resume where you left off — {formatClock(saved)}</Text>
+            </View>
           </Pressable>
         )}
 
@@ -149,9 +153,12 @@ export default function VideoScreen() {
           />
           {cc && (
             <View style={s.ccBar} pointerEvents="none">
-              <Text style={s.ccText}>
-                ♪ {ch?.title} — {formatClock(position)}
-              </Text>
+              <View style={s.ccRow}>
+                <MelroseIcon name="music" size={13} color="#fff" />
+                <Text style={s.ccText}>
+                  {ch?.title} — {formatClock(position)}
+                </Text>
+              </View>
             </View>
           )}
         </View>
@@ -166,10 +173,16 @@ export default function VideoScreen() {
             <Text style={s.pillT}>CC {cc ? 'on' : 'off'}</Text>
           </Pressable>
           <Pressable onPress={fullscreen} style={s.pill} accessibilityLabel="Fullscreen">
-            <Text style={s.pillT}>⛶ Full</Text>
+            <View style={s.pillRow}>
+              <MelroseIcon name="maximize" size={13} color={Theme.colors.accent} />
+              <Text style={s.pillT}>Full</Text>
+            </View>
           </Pressable>
           <Pressable onPress={pip} style={s.pill} accessibilityLabel="Picture in picture">
-            <Text style={s.pillT}>❐ PiP</Text>
+            <View style={s.pillRow}>
+              <MelroseIcon name="copy" size={13} color={Theme.colors.accent} />
+              <Text style={s.pillT}>PiP</Text>
+            </View>
           </Pressable>
         </View>
         {Platform.OS === 'web' && <Muted>Web: fullscreen via player controls; PiP via browser where supported.</Muted>}
@@ -178,10 +191,7 @@ export default function VideoScreen() {
 
         <Text style={s.h}>Chapters — tap to jump (markers)</Text>
         <Card>
-          <Chapters
-            chapters={lesson.chapters.map((c, i) => ({ ...c, title: `${i === chIdx ? '▶ ' : ''}${c.title}` }))}
-            onSeek={(c) => seekTo(c.seconds)}
-          />
+          <Chapters chapters={lesson.chapters} onSeek={(c) => seekTo(c.seconds)} />
         </Card>
 
         <Text style={s.h}>Transcript (read or search)</Text>
@@ -209,13 +219,16 @@ export default function VideoScreen() {
 
 const s = StyleSheet.create({
   resume: { backgroundColor: Theme.colors.primary, borderWidth: 2, borderColor: Theme.colors.goldBorder, padding: 14, borderRadius: Theme.radius.sm, marginVertical: 8, alignItems: 'center', minHeight: Theme.touch.min, justifyContent: 'center' },
+  resumeRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   resumeT: { color: Theme.colors.onPrimary, fontFamily: Theme.fonts.bold, fontSize: 15 },
   playerWrap: { backgroundColor: '#000', borderRadius: Theme.radius.md, overflow: 'hidden', marginVertical: 12, borderWidth: 1, borderColor: Theme.colors.border },
   player: { width: '100%', height: '100%' },
   ccBar: { position: 'absolute', left: 8, right: 8, bottom: 8, backgroundColor: '#000000cc', borderRadius: 6, paddingHorizontal: 10, paddingVertical: 6 },
+  ccRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
   ccText: { color: '#fff', fontSize: 13, fontFamily: Theme.fonts.bold, textAlign: 'center' },
   controls: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center' },
   pill: { backgroundColor: Theme.colors.surface, borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 10, minHeight: Theme.touch.min, justifyContent: 'center' },
+  pillRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   pillT: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold, fontSize: 13 },
   h: { color: '#fff', fontFamily: Theme.fonts.bold, fontSize: 18, marginTop: 18, marginBottom: 6 },
   transcript: { color: Theme.colors.text, fontFamily: Theme.fonts.regular, fontSize: 14, lineHeight: 21 },

@@ -6,7 +6,7 @@ import { ScrollView, View, Text, Pressable, StyleSheet, TextInput, Image } from 
 import { Theme } from '../../src/theme';
 import { useAuth } from '../../src/store/store';
 import { useProgress } from '../../src/store/store';
-import { xpBreakdown, achievementsFor } from '../../src/lib/gamification';
+import { xpBreakdownFull, achievementsFor } from '../../src/lib/gamification';
 import { ACHIEVEMENTS } from '../../src/data/gamification';
 import { overallProgress } from '../../src/lib/progress';
 import { certificateId, verifyUrl } from '../../src/lib/misc';
@@ -19,10 +19,10 @@ const LEVELS_1_10 = Array.from({ length: 10 }, (_, i) => i + 1);
 
 export default function Profile() {
   const { auth, signOut, setName, setAvatar, setExperience, setGoals, setCurrentLevel, setEnrollment } = useAuth();
-  const { completed, bookmarks } = useProgress();
-  const { total, level } = xpBreakdown(completed);
+  const { completed, bookmarks, streak, completedProjects, projectStageCount } = useProgress();
+  const { total, level } = xpBreakdownFull(completed, projectStageCount);
   const pct = overallProgress(completed);
-  const mine = achievementsFor(completed, 0);
+  const mine = achievementsFor(completed, completedProjects);
   const [goalDraft, setGoalDraft] = useState('');
 
   const completedModules = useMemo(
@@ -50,7 +50,7 @@ export default function Profile() {
     <Screen>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Eyebrow>
-          STUDENT PROFILE • {ROLE_COPY[auth.role].badge} • LEVEL {level} • {total} XP
+          STUDENT PROFILE • {ROLE_COPY[auth.role].badge} • LEVEL {level} • {total} XP • STREAK {streak} • {completedProjects} PROJECTS
         </Eyebrow>
         <H1>{auth.name || 'Student profile'}</H1>
         <Body>{auth.email ?? 'Not signed in — create an account to save progress across devices.'}</Body>
@@ -196,6 +196,7 @@ export default function Profile() {
             <LinkButton href="/settings" title="Change role (demo) in Settings" />
           </Card>
         </Grid>
+        <LinkButton href="/enroll" title="Enroll — plans, coupons, receipts" />
         <LinkButton href="/settings" title="Open settings (reminders, speed, offline)" />
         <LinkButton href="/notifications" title="Notifications & reminders" />
         <LinkButton href="/admin" title="Author / Admin CMS (role-gated)" />

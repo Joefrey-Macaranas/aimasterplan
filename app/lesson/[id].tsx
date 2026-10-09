@@ -5,6 +5,7 @@ import { Theme } from '../../src/theme';
 import { getLesson, LESSONS, getPrevLesson, getNextLesson } from '../../src/data/curriculum';
 import { CopyBlock, Chapters } from '../../src/components/blocks';
 import { Screen, H1, H2, Body, Muted, Card, Chip, LinkButton } from '../../src/components/ui';
+import { MelroseIcon } from '../../src/components/icons';
 import { useProgress } from '../../src/store/store';
 
 export default function LessonScreen() {
@@ -57,7 +58,7 @@ export default function LessonScreen() {
           <Chip label="WHY before HOW" tone="accent" />
         </View>
 
-        <LinkButton href={`/video/${lesson.id}`} title="▶ Play recorded walkthrough (chapters + transcript)" />
+        <LinkButton href={`/video/${lesson.id}`} title="Play recorded walkthrough (chapters + transcript)" />
 
         <Card>
           <Muted>START HERE — WHY THIS MATTERS (READ FIRST)</Muted>
@@ -87,7 +88,10 @@ export default function LessonScreen() {
         <H2>Downloads (reproducible project)</H2>
         {lesson.resources.map((r) => (
           <Pressable key={r.url} onPress={() => Linking.openURL(r.url)} style={s.link}>
-            <Text style={s.linkT}>⬇ {r.name}</Text>
+            <View style={s.linkRow}>
+              <MelroseIcon name="download" size={15} color={Theme.colors.accent} />
+              <Text style={s.linkT}>{r.name}</Text>
+            </View>
           </Pressable>
         ))}
 
@@ -104,8 +108,14 @@ export default function LessonScreen() {
         <H2>If it looks different — common errors</H2>
         {lesson.commonErrors.map((e, i) => (
           <Card key={i}>
-            <Body>❌ {e.error}</Body>
-            <Muted>✅ Fix: {e.fix}</Muted>
+            <View style={s.errRow}>
+              <MelroseIcon name="x-circle" size={15} color={Theme.colors.danger} />
+              <Body>{e.error}</Body>
+            </View>
+            <View style={s.errRow}>
+              <MelroseIcon name="check-circle" size={15} color={Theme.colors.success} />
+              <Muted>Fix: {e.fix}</Muted>
+            </View>
           </Card>
         ))}
 
@@ -122,10 +132,14 @@ export default function LessonScreen() {
                   onPress={() => setQuizPick(i)}
                   style={[s.quiz, correct && s.quizGood, wrong && s.quizBad]}
                 >
-                  <Text style={s.quizT}>
-                    {i === quizPick ? (i === quiz.answer ? '✓ ' : '✗ ') : '○ '}
-                    {o}
-                  </Text>
+                  <View style={s.quizRow}>
+                    <MelroseIcon
+                      name={i === quizPick ? (i === quiz.answer ? 'check-circle' : 'x-circle') : 'circle'}
+                      size={15}
+                      color={correct ? Theme.colors.success : wrong ? Theme.colors.danger : Theme.colors.muted}
+                    />
+                    <Text style={s.quizT}>{o}</Text>
+                  </View>
                 </Pressable>
               );
             })}
@@ -145,7 +159,7 @@ export default function LessonScreen() {
           const on = checked.includes(c);
           return (
             <Pressable key={c} onPress={() => toggleItem(c)} style={[s.check, on && s.checkOn]}>
-              <Text style={s.checkDot}>{on ? '☑' : '☐'}</Text>
+              <MelroseIcon name={on ? 'check-square' : 'square'} size={18} color={on ? Theme.colors.success : Theme.colors.muted} />
               <Text style={s.checkT}>{c}</Text>
             </Pressable>
           );
@@ -159,8 +173,9 @@ export default function LessonScreen() {
         <Pressable onPress={() => toggleComplete(lesson.id)} style={[s.done, done && s.doneOn]}>
           <Text style={s.doneT}>{done ? '✓ Completed — tap to undo' : 'Mark lesson complete (+50 XP)'}</Text>
         </Pressable>
-        <Pressable onPress={() => toggleBookmark(lesson.id)}>
-          <Text style={s.bm}>{bookmarks.includes(lesson.id) ? '★ Bookmarked — tap to remove' : '☆ Bookmark for later'}</Text>
+        <Pressable onPress={() => toggleBookmark(lesson.id)} style={s.bmRow}>
+          <MelroseIcon name="bookmark" size={15} color={Theme.colors.accent} />
+          <Text style={s.bm}>{bookmarks.includes(lesson.id) ? 'Bookmarked — tap to remove' : 'Bookmark for later'}</Text>
         </Pressable>
 
         <H2>Keep going</H2>
@@ -179,15 +194,18 @@ const s = StyleSheet.create({
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginVertical: 8 },
   why: { color: Theme.colors.text, fontSize: 16, lineHeight: 24, fontWeight: '600', marginTop: 6 },
   link: { backgroundColor: Theme.colors.surface, borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 0, padding: 12, marginVertical: 4 },
-  linkT: { color: Theme.colors.accent, fontWeight: '700' },
+  linkRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  linkT: { color: Theme.colors.accent, fontWeight: '700', flex: 1 },
+  errRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 8, marginVertical: 2 },
   quiz: { backgroundColor: Theme.colors.surface, borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 0, padding: 12, marginVertical: 4 },
   quizGood: { borderColor: Theme.colors.success },
   quizBad: { borderColor: Theme.colors.danger },
-  quizT: { color: Theme.colors.text, fontWeight: '600' },
+  quizRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  quizT: { color: Theme.colors.text, fontWeight: '600', flex: 1 },
   check: { flexDirection: 'row', gap: 10, alignItems: 'center', backgroundColor: Theme.colors.surface, borderWidth: 1, borderColor: Theme.colors.border, borderRadius: 0, padding: 12, marginVertical: 4 },
   checkOn: { borderColor: Theme.colors.success },
-  checkDot: { color: Theme.colors.success, fontSize: 18, fontWeight: '800' },
   checkT: { color: Theme.colors.text, flex: 1 },
+  bmRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 12, paddingVertical: 10 },
   done: { backgroundColor: Theme.colors.success, padding: 16, borderRadius: 0, marginTop: 14, alignItems: 'center' },
   doneOn: { backgroundColor: '#065f46' },
   doneT: { color: '#052e16', fontWeight: '800', fontSize: 16 },

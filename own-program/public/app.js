@@ -2,6 +2,32 @@
 const $ = (s) => document.querySelector(s);
 const store = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } }, set(k, v) { localStorage.setItem(k, JSON.stringify(v)); } };
 let CUR = null, DONE = store.get('amp-own-done', []), TOTAL = 111;
+let DATES = store.get('amp-own-dates', []);
+let GOAL = Number(localStorage.getItem('amp-own-goal') || 5) || 5;
+function touchDate() {
+  const day = new Date().toISOString().slice(0, 10);
+  if (!DATES.some((d) => d.slice(0, 10) === day)) {
+    DATES = [...DATES, new Date().toISOString()];
+    store.set('amp-own-dates', DATES);
+  }
+}
+function streak() {
+  const days = new Set(DATES.map((d) => d.slice(0, 10)));
+  let n = 0;
+  const c = new Date();
+  if (!days.has(c.toISOString().slice(0, 10))) c.setDate(c.getDate() - 1);
+  while (days.has(c.toISOString().slice(0, 10)) && n < 365) { n++; c.setDate(c.getDate() - 1); }
+  return n;
+}
+function weekStart() {
+  const d = new Date();
+  d.setDate(d.getDate() - ((d.getDay() + 6) % 7));
+  return d.toISOString().slice(0, 10);
+}
+function weekDays() {
+  const s = weekStart();
+  return new Set(DATES.map((d) => d.slice(0, 10)).filter((day) => day >= s)).size;
+}
 
 async function jget(p) { const r = await fetch(p); return r.json(); }
 
@@ -26,7 +52,9 @@ function renderLevels(levels) {
     </div>`).join('');
   box.querySelectorAll('.les').forEach((b) => b.addEventListener('click', () => {
     const id = b.dataset.id;
-    DONE = DONE.includes(id) ? DONE.filter((x) => x !== id) : [...DONE, id];
+    const adding = !DONE.includes(id);
+    DONE = adding ? [...DONE, id] : DONE.filter((x) => x !== id);
+    if (adding) touchDate();
     store.set('amp-own-done', DONE);
     renderLevels(levels); renderBar();
   }));
@@ -34,12 +62,16 @@ function renderLevels(levels) {
 
 function renderBar() {
   const total = TOTAL, n = DONE.filter((id) => lessonExists(id)).length, pct = Math.round((n / total) * 100);
+  const st = streak(), wd = weekDays(), wpct = Math.min(100, Math.round((wd / GOAL) * 100));
   $('#barFill').style.width = pct + '%';
-  $('#barLabel').textContent = `${n}/${total} lessons • ${pct}% • ${n * 50} XP`;
+  $('#barLabel').textContent = `${n}/${total} lessons • ${pct}% • ${n * 50} XP • 🔥 ${st} day streak`;
   $('#lcount').textContent = `${n}/${total}`;
-  $('#progOut').textContent = n === 0 ? 'Complete lessons above to grow XP.' :
+  $('#progOut').textContent = (n === 0 ? 'Complete lessons above to grow XP.' :
     n >= total ? `All ${total} done — you are an Independent Builder! (${n * 50} XP)` :
-    `${n}/${total} lessons, ${n * 50} XP. ~${Math.ceil((total - n) / 2)} days left at 2/day. Next: ${nextId()}.`;
+    `${n}/${total} lessons, ${n * 50} XP (50/lesson). ~${Math.ceil((total - n) / 2)} days left at 2/day. Next: ${nextId()}.`) +
+    ` Weekly goal: ${wd}/${GOAL} active days (${wpct}%)${wd >= GOAL ? ' ✓ met!' : ''}. Streak: ${st} day(s).`;
+  const g = $('#goalLine');
+  if (g) g.textContent = `Weekly goal: ${wd}/${GOAL} days • streak 🔥 ${st}`;
 }
 
 function lessonExists(id) {
@@ -91,8 +123,10 @@ async function boot() {
     window._lastPlan = { idea, plan: p };
     $('#planOut').textContent = `DEFINITION: ${p.definition}\n\nFEATURES:\n- ${p.features.join('\n- ')}\n\nSTACK: ${p.stack.join(' • ')}\n\nARCHITECTURE: ${p.architecture}\n\nTODOS:\n- ${p.todos.join('\n- ')}\n\nDEPLOY: ${p.deployment}`;
   });
-  wirePlans(); wireAsk(); wireMeet(); wireCommunity();
+  wirePlans(); wireAsk(); wireMeet(); wireCommunity(); wireCerts(); wireEnroll(); wireNotify(); wireCms();
   $('#resetBtn').addEventListener('click', () => { DONE = []; store.set('amp-own-done', DONE); renderLevels(CUR.levels); renderBar(); });
+  $('#goalDown').addEventListener('click', () => { GOAL = Math.max(1, GOAL - 1); localStorage.setItem('amp-own-goal', String(GOAL)); renderBar(); });
+  $('#goalUp').addEventListener('click', () => { GOAL = Math.min(21, GOAL + 1); localStorage.setItem('amp-own-goal', String(GOAL)); renderBar(); });
   wireAuth();
   wireOnboard();
 }
@@ -261,6 +295,75 @@ function wireCommunity() {
     _cData = await jget('/api/community');
     paintCommunity();
   });
+}
+function wireCerts() {
+  const btn = $('#certBtn');
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    const email = ($('#certEmail').value || 'student').trim();
+    const c = await jget('/api/cert?email=' + encodeURIComponent(email));
+    $('#certOut').textContent = `FINAL: ${c.program}\nStudent: ${c.student} • Date: ${c.date}\nID: ${c.final.certId}\nVerify: ${c.final.url}\nSignature: ${c.signature}\n(Print this page to PDF to download • copy the link to share.)`;
+    $('#certMods').innerHTML = '<h3>Module certificates (20)</h3>' + c.modules.map((m) => `<div class="proj"><b>${m.moduleId} — ${m.title}</b><br><span class="muted">ID ${m.certId}</span><br><span class="muted">${m.url}</span></div>`).join('');
+  });
+}
+function wireEnroll() {
+  const qb = $('#eQuote');
+  if (!qb) return;
+  const creds = () => ({ productId: $('#ePlan').value, coupon: $('#eCoupon').value, story: $('#eStory').value, email: $('#eEmail').value.trim() });
+  qb.addEventListener('click', async () => {
+    const c = creds();
+    const q = await post('/api/enroll/quote', { productId: c.productId, coupon: c.coupon, story: c.story });
+    $('#eOut').textContent = q.ok ? `Quote: $${(q.quote.subtotal / 100).toFixed(2)} - $${(q.quote.discount / 100).toFixed(2)} = $${(q.quote.total / 100).toFixed(2)}` : `Error: ${q.error}`;
+  });
+  $('#eBuy').addEventListener('click', async () => {
+    const c = creds();
+    const r = await post('/api/enroll/purchase', c);
+    $('#eOut').textContent = r.ok ? `✓ Enrolled (demo, no charge).\n${r.receipt}` : `Error: ${r.error}`;
+    paintBilling();
+  });
+  paintBilling();
+}
+async function paintBilling() {
+  const box = $('#eHist');
+  if (!box) return;
+  const email = ($('#eEmail').value || '').trim();
+  const d = await jget('/api/billing' + (email ? '?email=' + encodeURIComponent(email) : ''));
+  box.innerHTML = d.purchases.length ? '' : '<p class="muted">No purchases yet.</p>';
+  d.purchases.forEach((p) => {
+    const dv = document.createElement('div');
+    dv.className = 'proj';
+    dv.innerHTML = `<b>${p.id} — ${p.productId}</b> <span class="price">$${(p.total / 100).toFixed(2)}</span><br><span class="muted">${p.email} • ${String(p.at).slice(0, 10)}</span>`;
+    box.appendChild(dv);
+  });
+}
+function wireNotify() {
+  const list = $('#nList');
+  if (!list) return;
+  jget('/api/notify').then((d) => {
+    list.innerHTML = '';
+    d.triggers.forEach((t) => {
+      const dv = document.createElement('div');
+      dv.className = 'proj';
+      dv.innerHTML = `<b>${t.label}</b><br><span class="muted">${t.hint}</span>`;
+      list.appendChild(dv);
+    });
+  });
+  $('#nEnable').addEventListener('click', async () => {
+    if (!('Notification' in window)) { alert('Browser notifications unsupported here.'); return; }
+    const r = await Notification.requestPermission();
+    if (r === 'granted') {
+      try { new Notification('AI-MasterPlan', { body: 'Reminders on — resume your next lesson tomorrow.' }); } catch { /* blocked */ }
+      localStorage.setItem('amp-notify', '1');
+    }
+  });
+}
+function wireCms() {
+  if (!$('#cmsOut')) return;
+  jget('/api/cms').then((d) => {
+    const b = d.dashboard;
+    $('#cmsOut').textContent = `Levels ${b.levels} • Lessons ${b.lessons} • Tools ${b.tools} • Projects ${b.projects}\nPurchases ${b.purchases} • Pending reports ${b.pendingReports}`;
+    $('#cmsMod').innerHTML = d.moderation.length ? '<h3>Moderation queue</h3>' + d.moderation.map((m) => `<div class="proj"><b>${m.id}</b> by ${m.author} — ⚑ ${m.reports}</div>`).join('') : '<p class="muted">Moderation queue clear.</p>';
+  }).catch(() => { $('#cmsOut').textContent = 'CMS unreachable.'; });
 }
 const EXPLAIN_SHORT = [  ['Vibe Coding', 'Describe in words; AI writes code. You direct, check, fix.'],
   ['AI-assisted dev', 'Loop: prompt → generate → run → fix. Small loops win.'],

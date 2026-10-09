@@ -32,7 +32,14 @@
       "expo-av",
       "expo-asset",
       "expo-font",
-      "expo-video"
+      "expo-video",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/adaptive-icon.png",
+          "color": "#0a0a23"
+        }
+      ]
     ],
     "experiments": {}
   }

@@ -9,6 +9,7 @@ import { offlineHint, biggerHint, buildPrompt, skillFromCompleted, previousLesso
 import { getLesson, getNextLesson } from '../src/data/curriculum';
 import { PROJECTS } from '../src/data/projects';
 import { Screen, H1, H2, Body, Muted, Eyebrow, Card, Chip } from '../src/components/ui';
+import { MelroseIcon } from '../src/components/icons';
 import { useProgress } from '../src/store/store';
 
 interface Msg {
@@ -91,9 +92,9 @@ export default function Assistant() {
         <H1>Learning Assistant</H1>
         <Card>
           <View style={s.ctxRow}>
-            <Chip label={`📖 ${lesson?.id ?? '—'} ${lesson?.title ?? ''}`} tone="accent" />
-            <Chip label={`🎚 ${skill}`} />
-            <Chip label={`✓ ${completed.length} done`} tone="success" />
+            <Chip label={`${lesson?.id ?? '—'} ${lesson?.title ?? ''}`} tone="accent" icon="book-open" />
+            <Chip label={`${skill}`} icon="sliders" />
+            <Chip label={`${completed.length} done`} tone="success" icon="check" />
           </View>
           <Muted>
             Previous: {prev.length ? prev.map((l) => l.id).join(', ') : 'none yet'} • Next allowed: {next?.id ?? lesson?.id ?? '—'} (I never jump ahead)
@@ -141,7 +142,10 @@ export default function Assistant() {
               if (!l) return null;
               return (
                 <Link key={r} href={`/lesson/${r}` as never}>
-                  <Text style={s.link}>📖 Referenced: {r} — {l.title}</Text>
+                  <View style={s.refRow}>
+                    <MelroseIcon name="book-open" size={13} color={Theme.colors.accent} />
+                    <Text style={s.link}>Referenced: {r} — {l.title}</Text>
+                  </View>
                 </Link>
               );
             })}
@@ -183,6 +187,7 @@ const s = StyleSheet.create({
   you: { borderColor: Theme.colors.primary },
   tutor: { borderColor: Theme.colors.border },
   msg: { color: Theme.colors.text, fontSize: 14, lineHeight: 21, marginTop: 4 },
+  refRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 6 },
   link: { color: Theme.colors.accent, fontFamily: Theme.fonts.bold, marginTop: 6 },
   more: { marginTop: 8, paddingVertical: 10, minHeight: Theme.touch.min, justifyContent: 'center' },
   moreT: { color: Theme.colors.warning, fontFamily: Theme.fonts.bold },

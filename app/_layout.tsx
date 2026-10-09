@@ -61,6 +61,7 @@ export default function Layout() {
           <Stack.Screen name="module/[id]" options={{ title: 'Module' }} />
           <Stack.Screen name="project/[id]" options={{ title: 'Project workspace' }} />
           <Stack.Screen name="progress" options={{ title: 'Progress' }} />
+          <Stack.Screen name="enroll" options={{ title: 'Enroll' }} />
           <Stack.Screen name="settings" options={{ title: 'Settings' }} />
           <Stack.Screen name="achievements" options={{ title: 'Achievements' }} />
           <Stack.Screen name="planner" options={{ title: 'AI Project Planner' }} />
