@@ -1,0 +1,39 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - img "freeCodeCamp.org logo" [ref=e4]
+  - main [ref=e6]:
+    - generic [ref=e8]:
+      - main [ref=e10]:
+        - generic [ref=e13]:
+          - generic [ref=e14]:
+            - img "freeCodeCamp.org" [ref=e15]
+            - heading "Log in to freeCodeCamp Learn" [level=1] [ref=e16]
+            - generic:
+              - paragraph
+          - generic [ref=e17]:
+            - generic [ref=e20]:
+              - generic [ref=e25]:
+                - generic [ref=e26]: Email address *
+                - textbox "Email address" [active] [ref=e27]
+              - button "Continue with Email" [ref=e29] [cursor=pointer]
+            - paragraph [ref=e31]:
+              - text: Don't have an account yet?
+              - link "Sign up" [ref=e32] [cursor=pointer]:
+                - /url: /u/signup/identifier?state=hKFo2SBVMXpKV1d5QmRjTTV2cXFMVkZaN0xNZlJvbkJRZWd0M6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIHpjNTBsSnh2SWFYRWdZZWRIQTZHV3RUTXpkN2k0cl91o2NpZNkgYVVEdjlqVnFUZnhCUkUxbDYwTkE1QWY3eVRDR0U0Y3k
+            - generic [ref=e33]: Or
+            - generic [ref=e35]:
+              - button "Continue with Google" [ref=e37] [cursor=pointer]
+              - button "Continue with GitHub" [ref=e41] [cursor=pointer]
+              - button "Continue with Apple" [ref=e45] [cursor=pointer]
+      - generic [ref=e49]:
+        - paragraph [ref=e50]: freeCodeCamp is free and your account is private by default. We use your email address to connect you to your account.
+        - paragraph [ref=e51]: You must be at least 13 years old to create an account on freeCodeCamp.
+        - paragraph [ref=e52]:
+          - text: By continuing, you indicate that you have read and agree to freeCodeCamp.org's
+          - link "Terms of Service" [ref=e54] [cursor=pointer]:
+            - /url: https://www.freecodecamp.org/terms
+          - text: and
+          - link "Privacy Policy" [ref=e56] [cursor=pointer]:
+            - /url: https://www.freecodecamp.org/privacy
+          - text: .

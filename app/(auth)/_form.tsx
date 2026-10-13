@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TextInput, Pressable, StyleSheet, Platform } from 'react-native';
+import { View, Text, TextInput, Pressable, StyleSheet, Platform, ScrollView } from 'react-native';
 import { Link, router } from 'expo-router';
 import { Theme } from '../../src/theme';
 import { isValidEmail, passwordIssues } from '../../src/lib/auth';
@@ -98,6 +98,11 @@ export function AuthForm({ mode }: { mode: 'login' | 'register' | 'forgot' }) {
 
   return (
     <Screen>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={s.scroll}
+      >
       <Eyebrow>AI-MASTERPLAN • {mode === 'login' ? 'SIGN IN (PERSISTENT)' : mode === 'register' ? 'EMAIL REGISTRATION' : 'PASSWORD RECOVERY'}</Eyebrow>
       <H1>{title}</H1>
       <Body>{sub}</Body>
@@ -198,11 +203,14 @@ export function AuthForm({ mode }: { mode: 'login' | 'register' | 'forgot' }) {
         )}
       </View>
       <Muted>Persistent login: session stays on this device (AsyncStorage). Passwords use a demo hash offline — production uses server-side bcrypt + signed sessions (see backend/schema.sql).</Muted>
+      <View style={{ height: 24 }} />
+      </ScrollView>
     </Screen>
   );
 }
 
 const s = StyleSheet.create({
+  scroll: { paddingBottom: 24, flexGrow: 1 },
   oauth: { gap: 8, marginTop: 12 },
   gBtn: { backgroundColor: '#fff', padding: 15, borderRadius: 0, alignItems: 'center', minHeight: Theme.touch.min, justifyContent: 'center' },
   gBtnT: { color: '#1a1a1a', fontFamily: Theme.fonts.bold, fontSize: 16 },

@@ -1,0 +1,3740 @@
+{
+ "meta": {
+  "source": "http://localhost:8083",
+  "exportedAt": "2026-10-12T02:11:19.706Z",
+  "program": "AI-MasterPlan",
+  "counts": {
+   "levels": 10,
+   "modules": 20,
+   "lessons": 111,
+   "lesson_blocks": 174,
+   "tools": 13,
+   "projects": 10,
+   "meetings": 1
+  },
+  "excluded": [
+   "community",
+   "gamification/achievements",
+   "certificates",
+   "payments/purchases"
+  ]
+ },
+ "levels": [
+  {
+   "id": "L1",
+   "n": 1,
+   "title": "Understanding AI & Vibe Coding",
+   "summary": "AI, LLMs, prompts, app parts in plain words.",
+   "project": null,
+   "order": 1
+  },
+  {
+   "id": "L2",
+   "n": 2,
+   "title": "Setting Up Your Development Environment",
+   "summary": "Editor, terminal, git, Node, run locally.",
+   "project": null,
+   "order": 2
+  },
+  {
+   "id": "L3",
+   "n": 3,
+   "title": "Build Your First Website",
+   "summary": "Generate, style, navigate, debug, ship a site. PROJECT: Personal/Business Website.",
+   "project": "P01",
+   "order": 3
+  },
+  {
+   "id": "L4",
+   "n": 4,
+   "title": "Build Your First Real Application",
+   "summary": "Frontend, backend, APIs, JSON, REST, CRUD. PROJECT: Functional CRUD application.",
+   "project": "P03",
+   "order": 4
+  },
+  {
+   "id": "L5",
+   "n": 5,
+   "title": "Databases & User Accounts",
+   "summary": "Tables, queries, auth, sessions, env vars. PROJECT: Multi-user application.",
+   "project": "P-multi",
+   "order": 5
+  },
+  {
+   "id": "L6",
+   "n": 6,
+   "title": "AI Integration",
+   "summary": "LLM APIs, prompts, context, JSON, streaming, cost. PROJECT: AI-powered assistant.",
+   "project": "P04",
+   "order": 6
+  },
+  {
+   "id": "L7",
+   "n": 7,
+   "title": "AI Automation",
+   "summary": "Triggers, webhooks, schedules, approvals. PROJECT: Real-world AI automation.",
+   "project": "P05",
+   "order": 7
+  },
+  {
+   "id": "L8",
+   "n": 8,
+   "title": "AI Agents",
+   "summary": "Tools, memory, planning, verification, multi-agent. PROJECT: Autonomous task agent.",
+   "project": "P07",
+   "order": 8
+  },
+  {
+   "id": "L9",
+   "n": 9,
+   "title": "Full AI System Development",
+   "summary": "PRD to production SaaS. PROJECT: Production AI SaaS.",
+   "project": "P09",
+   "order": 9
+  },
+  {
+   "id": "L10",
+   "n": 10,
+   "title": "Build Independently",
+   "summary": "Fading hand-holding: plan, build, test, deploy solo. FINAL: own product.",
+   "project": "P10",
+   "order": 10
+  }
+ ],
+ "modules": [
+  {
+   "id": "L1M1",
+   "level_id": "L1",
+   "title": "AI Foundations",
+   "order": "L1M1"
+  },
+  {
+   "id": "L1M2",
+   "level_id": "L1",
+   "title": "How Apps Work",
+   "order": "L1M2"
+  },
+  {
+   "id": "L2M1",
+   "level_id": "L2",
+   "title": "Install Your Toolkit",
+   "order": "L2M1"
+  },
+  {
+   "id": "L2M2",
+   "level_id": "L2",
+   "title": "Run Your First Project",
+   "order": "L2M2"
+  },
+  {
+   "id": "L3M1",
+   "level_id": "L3",
+   "title": "Web Basics with AI",
+   "order": "L3M1"
+  },
+  {
+   "id": "L3M2",
+   "level_id": "L3",
+   "title": "Ship a Complete Website",
+   "order": "L3M2"
+  },
+  {
+   "id": "L4M1",
+   "level_id": "L4",
+   "title": "Client & Server",
+   "order": "L4M1"
+  },
+  {
+   "id": "L4M2",
+   "level_id": "L4",
+   "title": "CRUD in Practice",
+   "order": "L4M2"
+  },
+  {
+   "id": "L5M1",
+   "level_id": "L5",
+   "title": "Data Basics",
+   "order": "L5M1"
+  },
+  {
+   "id": "L5M2",
+   "level_id": "L5",
+   "title": "Accounts & Security",
+   "order": "L5M2"
+  },
+  {
+   "id": "L6M1",
+   "level_id": "L6",
+   "title": "LLM APIs",
+   "order": "L6M1"
+  },
+  {
+   "id": "L6M2",
+   "level_id": "L6",
+   "title": "Production AI Features",
+   "order": "L6M2"
+  },
+  {
+   "id": "L7M1",
+   "level_id": "L7",
+   "title": "Automation Foundations",
+   "order": "L7M1"
+  },
+  {
+   "id": "L7M2",
+   "level_id": "L7",
+   "title": "Real-World Automations",
+   "order": "L7M2"
+  },
+  {
+   "id": "L8M1",
+   "level_id": "L8",
+   "title": "Agent Architecture",
+   "order": "L8M1"
+  },
+  {
+   "id": "L8M2",
+   "level_id": "L8",
+   "title": "Reliable Agents",
+   "order": "L8M2"
+  },
+  {
+   "id": "L9M1",
+   "level_id": "L9",
+   "title": "Plan the System",
+   "order": "L9M1"
+  },
+  {
+   "id": "L9M2",
+   "level_id": "L9",
+   "title": "Build & Harden",
+   "order": "L9M2"
+  },
+  {
+   "id": "L10M1",
+   "level_id": "L10",
+   "title": "From Idea to Plan",
+   "order": "L10M1"
+  },
+  {
+   "id": "L10M2",
+   "level_id": "L10",
+   "title": "Ship Your MVP",
+   "order": "L10M2"
+  }
+ ],
+ "lessons": [
+  {
+   "id": "L1M1L1",
+   "module_id": "L1M1",
+   "level_id": "L1",
+   "title": "What is AI?",
+   "minutes": 12,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L1M1L2",
+   "module_id": "L1M1",
+   "level_id": "L1",
+   "title": "What is an LLM?",
+   "minutes": 15,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L1M1L3",
+   "module_id": "L1M1",
+   "level_id": "L1",
+   "title": "What is Vibe Coding?",
+   "minutes": 15,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L1M1L4",
+   "module_id": "L1M1",
+   "level_id": "L1",
+   "title": "AI vs Traditional Programming",
+   "minutes": 14,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L1M1L5",
+   "module_id": "L1M1",
+   "level_id": "L1",
+   "title": "Understanding Prompts",
+   "minutes": 16,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L1M2L1",
+   "module_id": "L1M2",
+   "level_id": "L1",
+   "title": "Understanding Context",
+   "minutes": 14,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L1M2L2",
+   "module_id": "L1M2",
+   "level_id": "L1",
+   "title": "Files and Folders",
+   "minutes": 14,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L1M2L3",
+   "module_id": "L1M2",
+   "level_id": "L1",
+   "title": "Basic Developer Terminology",
+   "minutes": 12,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L1M2L4",
+   "module_id": "L1M2",
+   "level_id": "L1",
+   "title": "Understanding an Application Architecture",
+   "minutes": 18,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L1M2L5",
+   "module_id": "L1M2",
+   "level_id": "L1",
+   "title": "First AI Coding Exercise",
+   "minutes": 20,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L2M1L1",
+   "module_id": "L2M1",
+   "level_id": "L2",
+   "title": "Installing Required Tools",
+   "minutes": 20,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L2M1L2",
+   "module_id": "L2M1",
+   "level_id": "L2",
+   "title": "IDE / Code Editor Introduction",
+   "minutes": 16,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L2M1L3",
+   "module_id": "L2M1",
+   "level_id": "L2",
+   "title": "Git Basics",
+   "minutes": 18,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L2M1L4",
+   "module_id": "L2M1",
+   "level_id": "L2",
+   "title": "GitHub Account Setup",
+   "minutes": 15,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L2M1L5",
+   "module_id": "L2M1",
+   "level_id": "L2",
+   "title": "Node.js Installation",
+   "minutes": 16,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L2M2L1",
+   "module_id": "L2M2",
+   "level_id": "L2",
+   "title": "Terminal Basics",
+   "minutes": 15,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L2M2L2",
+   "module_id": "L2M2",
+   "level_id": "L2",
+   "title": "Package Managers",
+   "minutes": 14,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L2M2L3",
+   "module_id": "L2M2",
+   "level_id": "L2",
+   "title": "Environment Variables",
+   "minutes": 14,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L2M2L4",
+   "module_id": "L2M2",
+   "level_id": "L2",
+   "title": "Project Folders",
+   "minutes": 12,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L2M2L5",
+   "module_id": "L2M2",
+   "level_id": "L2",
+   "title": "Running a Local Development Server",
+   "minutes": 18,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L3M1L1",
+   "module_id": "L3M1",
+   "level_id": "L3",
+   "title": "Generate Initial Project",
+   "minutes": 20,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L3M1L2",
+   "module_id": "L3M1",
+   "level_id": "L3",
+   "title": "HTML Concepts",
+   "minutes": 18,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L3M1L3",
+   "module_id": "L3M1",
+   "level_id": "L3",
+   "title": "CSS Concepts",
+   "minutes": 20,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L3M1L4",
+   "module_id": "L3M1",
+   "level_id": "L3",
+   "title": "JavaScript Concepts",
+   "minutes": 20,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L3M1L5",
+   "module_id": "L3M1",
+   "level_id": "L3",
+   "title": "Components",
+   "minutes": 22,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L3M2L1",
+   "module_id": "L3M2",
+   "level_id": "L3",
+   "title": "Responsive Layouts",
+   "minutes": 20,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L3M2L2",
+   "module_id": "L3M2",
+   "level_id": "L3",
+   "title": "Navigation",
+   "minutes": 16,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L3M2L3",
+   "module_id": "L3M2",
+   "level_id": "L3",
+   "title": "Forms",
+   "minutes": 20,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L3M2L4",
+   "module_id": "L3M2",
+   "level_id": "L3",
+   "title": "Images and Assets",
+   "minutes": 14,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L3M2L5",
+   "module_id": "L3M2",
+   "level_id": "L3",
+   "title": "Debugging",
+   "minutes": 18,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L3M2L6",
+   "module_id": "L3M2",
+   "level_id": "L3",
+   "title": "Build a Complete Website",
+   "minutes": 30,
+   "order": 6,
+   "status": "published"
+  },
+  {
+   "id": "L4M1L1",
+   "module_id": "L4M1",
+   "level_id": "L4",
+   "title": "Understand Frontend",
+   "minutes": 16,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L4M1L2",
+   "module_id": "L4M1",
+   "level_id": "L4",
+   "title": "Understand Backend",
+   "minutes": 16,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L4M1L3",
+   "module_id": "L4M1",
+   "level_id": "L4",
+   "title": "Understand Client/Server Communication",
+   "minutes": 18,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L4M1L4",
+   "module_id": "L4M1",
+   "level_id": "L4",
+   "title": "APIs",
+   "minutes": 20,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L4M1L5",
+   "module_id": "L4M1",
+   "level_id": "L4",
+   "title": "JSON",
+   "minutes": 14,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L4M1L6",
+   "module_id": "L4M1",
+   "level_id": "L4",
+   "title": "REST",
+   "minutes": 16,
+   "order": 6,
+   "status": "published"
+  },
+  {
+   "id": "L4M2L1",
+   "module_id": "L4M2",
+   "level_id": "L4",
+   "title": "Form Submission",
+   "minutes": 22,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L4M2L2",
+   "module_id": "L4M2",
+   "level_id": "L4",
+   "title": "Data Persistence",
+   "minutes": 20,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L4M2L3",
+   "module_id": "L4M2",
+   "level_id": "L4",
+   "title": "Error Handling + Functional CRUD Application",
+   "minutes": 32,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L5M1L1",
+   "module_id": "L5M1",
+   "level_id": "L5",
+   "title": "Database Basics",
+   "minutes": 16,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L5M1L2",
+   "module_id": "L5M1",
+   "level_id": "L5",
+   "title": "Tables and Collections",
+   "minutes": 18,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L5M1L3",
+   "module_id": "L5M1",
+   "level_id": "L5",
+   "title": "Creating Records",
+   "minutes": 18,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L5M1L4",
+   "module_id": "L5M1",
+   "level_id": "L5",
+   "title": "Updating Records",
+   "minutes": 16,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L5M1L5",
+   "module_id": "L5M1",
+   "level_id": "L5",
+   "title": "Deleting Records",
+   "minutes": 14,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L5M1L6",
+   "module_id": "L5M1",
+   "level_id": "L5",
+   "title": "Querying Data",
+   "minutes": 20,
+   "order": 6,
+   "status": "published"
+  },
+  {
+   "id": "L5M2L1",
+   "module_id": "L5M2",
+   "level_id": "L5",
+   "title": "Authentication",
+   "minutes": 25,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L5M2L2",
+   "module_id": "L5M2",
+   "level_id": "L5",
+   "title": "Authorization",
+   "minutes": 20,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L5M2L3",
+   "module_id": "L5M2",
+   "level_id": "L5",
+   "title": "User Sessions",
+   "minutes": 18,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L5M2L4",
+   "module_id": "L5M2",
+   "level_id": "L5",
+   "title": "User Profiles",
+   "minutes": 18,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L5M2L5",
+   "module_id": "L5M2",
+   "level_id": "L5",
+   "title": "Secure Environment Variables + Multi-User App",
+   "minutes": 30,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L6M1L1",
+   "module_id": "L6M1",
+   "level_id": "L6",
+   "title": "AI APIs",
+   "minutes": 20,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L6M1L2",
+   "module_id": "L6M1",
+   "level_id": "L6",
+   "title": "LLM API Concepts",
+   "minutes": 18,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L6M1L3",
+   "module_id": "L6M1",
+   "level_id": "L6",
+   "title": "System Prompts",
+   "minutes": 20,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L6M1L4",
+   "module_id": "L6M1",
+   "level_id": "L6",
+   "title": "User Prompts",
+   "minutes": 18,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L6M1L5",
+   "module_id": "L6M1",
+   "level_id": "L6",
+   "title": "Context Management",
+   "minutes": 20,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L6M2L1",
+   "module_id": "L6M2",
+   "level_id": "L6",
+   "title": "Structured Output",
+   "minutes": 20,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L6M2L2",
+   "module_id": "L6M2",
+   "level_id": "L6",
+   "title": "Tool and Function Calling",
+   "minutes": 22,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L6M2L3",
+   "module_id": "L6M2",
+   "level_id": "L6",
+   "title": "Streaming Responses",
+   "minutes": 20,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L6M2L4",
+   "module_id": "L6M2",
+   "level_id": "L6",
+   "title": "Error Handling",
+   "minutes": 18,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L6M2L5",
+   "module_id": "L6M2",
+   "level_id": "L6",
+   "title": "Usage and Cost Awareness + Assistant App",
+   "minutes": 30,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L7M1L1",
+   "module_id": "L7M1",
+   "level_id": "L7",
+   "title": "Automation Fundamentals",
+   "minutes": 20,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L7M1L2",
+   "module_id": "L7M1",
+   "level_id": "L7",
+   "title": "Triggers",
+   "minutes": 16,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L7M1L3",
+   "module_id": "L7M1",
+   "level_id": "L7",
+   "title": "Actions",
+   "minutes": 16,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L7M1L4",
+   "module_id": "L7M1",
+   "level_id": "L7",
+   "title": "Webhooks",
+   "minutes": 18,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L7M1L5",
+   "module_id": "L7M1",
+   "level_id": "L7",
+   "title": "APIs for Automation",
+   "minutes": 16,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L7M1L6",
+   "module_id": "L7M1",
+   "level_id": "L7",
+   "title": "Scheduled Workflows",
+   "minutes": 18,
+   "order": 6,
+   "status": "published"
+  },
+  {
+   "id": "L7M2L1",
+   "module_id": "L7M2",
+   "level_id": "L7",
+   "title": "Data Processing",
+   "minutes": 18,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L7M2L2",
+   "module_id": "L7M2",
+   "level_id": "L7",
+   "title": "Email Automation",
+   "minutes": 20,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L7M2L3",
+   "module_id": "L7M2",
+   "level_id": "L7",
+   "title": "CRM Automation",
+   "minutes": 20,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L7M2L4",
+   "module_id": "L7M2",
+   "level_id": "L7",
+   "title": "Social Automation",
+   "minutes": 18,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L7M2L5",
+   "module_id": "L7M2",
+   "level_id": "L7",
+   "title": "AI Decision Steps",
+   "minutes": 22,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L7M2L6",
+   "module_id": "L7M2",
+   "level_id": "L7",
+   "title": "Human Approval Workflows + Real Automation",
+   "minutes": 30,
+   "order": 6,
+   "status": "published"
+  },
+  {
+   "id": "L8M1L1",
+   "module_id": "L8M1",
+   "level_id": "L8",
+   "title": "What is an AI Agent?",
+   "minutes": 20,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L8M1L2",
+   "module_id": "L8M1",
+   "level_id": "L8",
+   "title": "Agent Architecture",
+   "minutes": 20,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L8M1L3",
+   "module_id": "L8M1",
+   "level_id": "L8",
+   "title": "Tools",
+   "minutes": 20,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L8M1L4",
+   "module_id": "L8M1",
+   "level_id": "L8",
+   "title": "Memory",
+   "minutes": 18,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L8M1L5",
+   "module_id": "L8M1",
+   "level_id": "L8",
+   "title": "Planning",
+   "minutes": 20,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L8M2L1",
+   "module_id": "L8M2",
+   "level_id": "L8",
+   "title": "Execution",
+   "minutes": 18,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L8M2L2",
+   "module_id": "L8M2",
+   "level_id": "L8",
+   "title": "Verification",
+   "minutes": 20,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L8M2L3",
+   "module_id": "L8M2",
+   "level_id": "L8",
+   "title": "Multi-Step Tasks",
+   "minutes": 22,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L8M2L4",
+   "module_id": "L8M2",
+   "level_id": "L8",
+   "title": "Agent Safety and Permissions",
+   "minutes": 22,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L8M2L5",
+   "module_id": "L8M2",
+   "level_id": "L8",
+   "title": "Multi-Agent Workflows + Task Agent",
+   "minutes": 32,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L9M1L1",
+   "module_id": "L9M1",
+   "level_id": "L9",
+   "title": "Product Requirements",
+   "minutes": 22,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L9M1L2",
+   "module_id": "L9M1",
+   "level_id": "L9",
+   "title": "System Architecture",
+   "minutes": 22,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L9M1L3",
+   "module_id": "L9M1",
+   "level_id": "L9",
+   "title": "Frontend Build",
+   "minutes": 25,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L9M1L4",
+   "module_id": "L9M1",
+   "level_id": "L9",
+   "title": "Backend Build",
+   "minutes": 25,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L9M1L5",
+   "module_id": "L9M1",
+   "level_id": "L9",
+   "title": "Database Build",
+   "minutes": 22,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L9M1L6",
+   "module_id": "L9M1",
+   "level_id": "L9",
+   "title": "Authentication Build",
+   "minutes": 22,
+   "order": 6,
+   "status": "published"
+  },
+  {
+   "id": "L9M1L7",
+   "module_id": "L9M1",
+   "level_id": "L9",
+   "title": "AI Integration Build",
+   "minutes": 28,
+   "order": 7,
+   "status": "published"
+  },
+  {
+   "id": "L9M2L1",
+   "module_id": "L9M2",
+   "level_id": "L9",
+   "title": "Agent Workflows",
+   "minutes": 22,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L9M2L2",
+   "module_id": "L9M2",
+   "level_id": "L9",
+   "title": "File Handling",
+   "minutes": 20,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L9M2L3",
+   "module_id": "L9M2",
+   "level_id": "L9",
+   "title": "Notifications",
+   "minutes": 18,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L9M2L4",
+   "module_id": "L9M2",
+   "level_id": "L9",
+   "title": "Logging",
+   "minutes": 16,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L9M2L5",
+   "module_id": "L9M2",
+   "level_id": "L9",
+   "title": "Error Handling",
+   "minutes": 18,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L9M2L6",
+   "module_id": "L9M2",
+   "level_id": "L9",
+   "title": "Testing",
+   "minutes": 22,
+   "order": 6,
+   "status": "published"
+  },
+  {
+   "id": "L9M2L7",
+   "module_id": "L9M2",
+   "level_id": "L9",
+   "title": "Security",
+   "minutes": 22,
+   "order": 7,
+   "status": "published"
+  },
+  {
+   "id": "L9M2L8",
+   "module_id": "L9M2",
+   "level_id": "L9",
+   "title": "Performance + SaaS Launch",
+   "minutes": 30,
+   "order": 8,
+   "status": "published"
+  },
+  {
+   "id": "L10M1L1",
+   "module_id": "L10M1",
+   "level_id": "L10",
+   "title": "Turn an Idea into Requirements",
+   "minutes": 25,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L10M1L2",
+   "module_id": "L10M1",
+   "level_id": "L10",
+   "title": "Create PRD",
+   "minutes": 22,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L10M1L3",
+   "module_id": "L10M1",
+   "level_id": "L10",
+   "title": "Define Features",
+   "minutes": 20,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L10M1L4",
+   "module_id": "L10M1",
+   "level_id": "L10",
+   "title": "Design Architecture",
+   "minutes": 22,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L10M1L5",
+   "module_id": "L10M1",
+   "level_id": "L10",
+   "title": "Choose Technologies",
+   "minutes": 18,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L10M1L6",
+   "module_id": "L10M1",
+   "level_id": "L10",
+   "title": "Break Project into Tasks",
+   "minutes": 20,
+   "order": 6,
+   "status": "published"
+  },
+  {
+   "id": "L10M2L1",
+   "module_id": "L10M2",
+   "level_id": "L10",
+   "title": "Prompt AI Coding Agents Effectively",
+   "minutes": 22,
+   "order": 1,
+   "status": "published"
+  },
+  {
+   "id": "L10M2L2",
+   "module_id": "L10M2",
+   "level_id": "L10",
+   "title": "Review Generated Code",
+   "minutes": 20,
+   "order": 2,
+   "status": "published"
+  },
+  {
+   "id": "L10M2L3",
+   "module_id": "L10M2",
+   "level_id": "L10",
+   "title": "Debug Independently",
+   "minutes": 25,
+   "order": 3,
+   "status": "published"
+  },
+  {
+   "id": "L10M2L4",
+   "module_id": "L10M2",
+   "level_id": "L10",
+   "title": "Test Application",
+   "minutes": 22,
+   "order": 4,
+   "status": "published"
+  },
+  {
+   "id": "L10M2L5",
+   "module_id": "L10M2",
+   "level_id": "L10",
+   "title": "Deploy Application",
+   "minutes": 25,
+   "order": 5,
+   "status": "published"
+  },
+  {
+   "id": "L10M2L6",
+   "module_id": "L10M2",
+   "level_id": "L10",
+   "title": "Maintain Application",
+   "minutes": 18,
+   "order": 6,
+   "status": "published"
+  },
+  {
+   "id": "L10M2L7",
+   "module_id": "L10M2",
+   "level_id": "L10",
+   "title": "Improve + Present Your Product",
+   "minutes": 35,
+   "order": 7,
+   "status": "published"
+  }
+ ],
+ "lesson_blocks": [
+  {
+   "lesson_id": "L1M1L1",
+   "type": "heading",
+   "body": "What is AI? — plain words",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L1M1L1",
+   "type": "text",
+   "body": "AI predicts the next step from examples. You describe, it drafts; you check.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L1M1L1",
+   "type": "video",
+   "body": "https://cdn.aimasterplan.app/intro/what-is-ai.mp4",
+   "language": null,
+   "url": "https://cdn.aimasterplan.app/intro/what-is-ai.mp4",
+   "caption": "Watch: AI in 5 minutes",
+   "order": 3
+  },
+  {
+   "lesson_id": "L1M1L1",
+   "type": "code",
+   "body": "console.log('Hello, AI builder');",
+   "language": "javascript",
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L1M1L1",
+   "type": "terminal",
+   "body": "node --version\nnpm --version",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 5
+  },
+  {
+   "lesson_id": "L1M1L1",
+   "type": "prompt",
+   "body": "GOAL: explain AI simply\nCONTEXT: total beginner\nCONSTRAINTS: no jargon\nEXAMPLE: like explaining to a friend",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 6
+  },
+  {
+   "lesson_id": "L1M1L2",
+   "type": "text",
+   "body": "Lesson: What is an LLM?\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L1M1L3",
+   "type": "heading",
+   "body": "Vibe Coding: you direct, the AI types",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L1M1L3",
+   "type": "text",
+   "body": "Vibe Coding means describing what you want in plain words and letting an AI coding agent write the code.\n\nYour job: describe clearly, run it, check the result, ask for fixes.\nThe agent's job: type, remember syntax, repeat forever without getting tired.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L1M1L3",
+   "type": "prompt",
+   "body": "GOAL: get the agent to build [one small thing]\nCONTEXT: I have never coded; my files are [list them]\nCONSTRAINTS: change as little as possible, explain each step\nEXAMPLE: 'Add a welcome message at the top of the page'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L1M1L3",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L1M1L4",
+   "type": "text",
+   "body": "Lesson: AI vs Traditional Programming\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L1M1L5",
+   "type": "heading",
+   "body": "Good prompts have 4 parts",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L1M1L5",
+   "type": "text",
+   "body": "GOAL: what done looks like.\nCONTEXT: your files, errors, what you tried.\nCONSTRAINTS: limits (small change, no new tools).\nEXAMPLE: paste what 'done' looks like.\n\nWeak: 'fix it'. Strong: GOAL + CONTEXT + CONSTRAINTS + EXAMPLE.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L1M1L5",
+   "type": "prompt",
+   "body": "GOAL: [one sentence]\nCONTEXT: [file + what you did + exact error]\nCONSTRAINTS: [smallest change, explain why]\nEXAMPLE OF DONE: [paste]",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L1M1L5",
+   "type": "quiz",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L1M2L1",
+   "type": "text",
+   "body": "Lesson: Understanding Context\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L1M2L2",
+   "type": "heading",
+   "body": "Files live in folders; names are addresses",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L1M2L2",
+   "type": "text",
+   "body": "A project is a folder of files.\n\n- index.html = the page.\n- styles.css = how it looks.\n- app.js = what it does.\n- server.js = the kitchen.\n- data/ = the pantry.\n\nThe full name from the project root (like public/app.js) is the file's address. Share it when asking for help.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L1M2L2",
+   "type": "terminal",
+   "body": "ls\nls public",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L1M2L2",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L1M2L3",
+   "type": "text",
+   "body": "Lesson: Basic Developer Terminology\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L1M2L4",
+   "type": "heading",
+   "body": "Apps have 3 parts: what you see, the kitchen, the pantry",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L1M2L4",
+   "type": "text",
+   "body": "Every app has the same skeleton.\n\n1. Frontend = what you see (buttons, text, pictures).\n2. Backend = the kitchen (does the work when you tap).\n3. Database = the pantry (remembers things).\n\nThey talk over a network: your tap travels frontend → backend → pantry and back.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L1M2L4",
+   "type": "prompt",
+   "body": "GOAL: explain my app idea in 3 parts\nCONTEXT: total beginner, my idea is [describe it]\nCONSTRAINTS: plain words, no jargon\nEXAMPLE: 'Frontend shows a list, backend saves it, database remembers it'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L1M2L4",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L1M2L4",
+   "type": "quiz",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 5
+  },
+  {
+   "lesson_id": "L1M2L5",
+   "type": "text",
+   "body": "Lesson: First AI Coding Exercise\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M1L1",
+   "type": "text",
+   "body": "Lesson: Installing Required Tools\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M1L2",
+   "type": "text",
+   "body": "Lesson: IDE / Code Editor Introduction\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M1L3",
+   "type": "text",
+   "body": "Lesson: Git Basics\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M1L4",
+   "type": "text",
+   "body": "Lesson: GitHub Account Setup\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M1L5",
+   "type": "text",
+   "body": "Lesson: Node.js Installation\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M2L1",
+   "type": "text",
+   "body": "Lesson: Terminal Basics\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M2L2",
+   "type": "text",
+   "body": "Lesson: Package Managers\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M2L3",
+   "type": "text",
+   "body": "Lesson: Environment Variables\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M2L4",
+   "type": "text",
+   "body": "Lesson: Project Folders\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M2L5",
+   "type": "heading",
+   "body": "Run it: terminal → folder → one command",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L2M2L5",
+   "type": "text",
+   "body": "Running locally means starting the app on your own computer.\n\n1. Open the terminal.\n2. Move into the project folder.\n3. Run the start command.\n4. Open the address it prints (usually http://localhost:8082).\n\nTo modify: change one file, save, refresh.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L2M2L5",
+   "type": "terminal",
+   "body": "cd my-project\nnode server.js",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L2M2L5",
+   "type": "prompt",
+   "body": "GOAL: run this project and show me the address\nCONTEXT: I am in [folder], I see [files]\nCONSTRAINTS: tell me exactly what to type, nothing else\nEXAMPLE: 'type this, then open this link'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L2M2L5",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 5
+  },
+  {
+   "lesson_id": "L3M1L1",
+   "type": "heading",
+   "body": "Websites: generate → style → navigate → debug → publish",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L3M1L1",
+   "type": "text",
+   "body": "Describe the site in words, generate the first version, then style it, add pages/links, debug, and publish to a real link.\nKeep 3 pages max for your first site. Test on your phone before sharing.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L3M1L1",
+   "type": "prompt",
+   "body": "GOAL: build a [3-page site about X]\nCONTEXT: beginner, pages are [list]\nCONSTRAINTS: responsive, one contact form, no new tools\nEXAMPLE: 'hero + features + contact, mobile-friendly'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L3M1L1",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L3M1L2",
+   "type": "text",
+   "body": "Lesson: HTML Concepts\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L3M1L3",
+   "type": "text",
+   "body": "Lesson: CSS Concepts\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L3M1L4",
+   "type": "text",
+   "body": "Lesson: JavaScript Concepts\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L3M1L5",
+   "type": "text",
+   "body": "Lesson: Components\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L3M2L1",
+   "type": "text",
+   "body": "Lesson: Responsive Layouts\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L3M2L2",
+   "type": "text",
+   "body": "Lesson: Navigation\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L3M2L3",
+   "type": "text",
+   "body": "Lesson: Forms\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L3M2L4",
+   "type": "text",
+   "body": "Lesson: Images and Assets\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L3M2L5",
+   "type": "heading",
+   "body": "Debug in 3 steps: message → compare → last step",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L3M2L5",
+   "type": "text",
+   "body": "1. Read the EXACT message (copy it, don't summarize).\n2. Compare expected vs actual: what should you see vs what do you see?\n3. Re-run only the LAST step, then report what changed.\n\n90% of beginner bugs: wrong folder, server not running, or a typo in a name.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L3M2L5",
+   "type": "prompt",
+   "body": "GOAL: fix this error\nCONTEXT: lesson [id], I did [steps], I expected [x] but saw [y], exact message: [paste]\nCONSTRAINTS: one fix at a time\nEXAMPLE: 'tell me which of the 3 steps failed'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L3M2L5",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L3M2L6",
+   "type": "text",
+   "body": "Lesson: Build a Complete Website\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L4M1L1",
+   "type": "text",
+   "body": "Lesson: Understand Frontend\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L4M1L2",
+   "type": "text",
+   "body": "Lesson: Understand Backend\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L4M1L3",
+   "type": "text",
+   "body": "Lesson: Understand Client/Server Communication\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L4M1L4",
+   "type": "heading",
+   "body": "APIs are menus for software",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L4M1L4",
+   "type": "text",
+   "body": "An API is a menu: you order (request) and get a dish (JSON response).\n\nGET /api/tools = 'show me tools'. POST with JSON = 'take this order'.\nKeys stay on the server (in .env), never in the page. Open the browser Network tab to watch orders go out.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L4M1L4",
+   "type": "code",
+   "body": "// APIs return JSON. Try it in your browser console against the live API:\n//   const r = await fetch('/api/tools');\n//   console.log((await r.json()).tools.length);\nconst tools = { tools: [{ name: 'Git' }, { name: 'VS Code' }] };\nconsole.log('tools:', tools.tools.length);\nconsole.log('first:', tools.tools[0].name);",
+   "language": "javascript",
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L4M1L4",
+   "type": "prompt",
+   "body": "GOAL: call [API name] and show [what]\nCONTEXT: my code is [paste], the docs say [paste]\nCONSTRAINTS: keep my key server-side\nEXAMPLE: 'fetch the list and print the first item'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L4M1L4",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 5
+  },
+  {
+   "lesson_id": "L4M1L5",
+   "type": "text",
+   "body": "Lesson: JSON\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L4M1L6",
+   "type": "text",
+   "body": "Lesson: REST\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L4M2L1",
+   "type": "text",
+   "body": "Lesson: Form Submission\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L4M2L2",
+   "type": "text",
+   "body": "Lesson: Data Persistence\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L4M2L3",
+   "type": "text",
+   "body": "Lesson: Error Handling + Functional CRUD Application\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M1L1",
+   "type": "heading",
+   "body": "Databases remember rows",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M1L1",
+   "type": "text",
+   "body": "A database is a pantry of tables. Each table holds rows (like spreadsheet rows).\n\nYou do 5 things: create, read, update, delete, query (find).\nCRUD = the first four. Start by reading one row before writing any.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L5M1L1",
+   "type": "code",
+   "body": "// read all students (admin)\nconst r = await fetch('/api/cms/students', { headers: { Authorization: 'Bearer ' + token } });",
+   "language": "javascript",
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L5M1L1",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L5M1L2",
+   "type": "text",
+   "body": "Lesson: Tables and Collections\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M1L3",
+   "type": "text",
+   "body": "Lesson: Creating Records\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M1L4",
+   "type": "text",
+   "body": "Lesson: Updating Records\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M1L5",
+   "type": "text",
+   "body": "Lesson: Deleting Records\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M1L6",
+   "type": "text",
+   "body": "Lesson: Querying Data\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M2L1",
+   "type": "heading",
+   "body": "Authentication = who are you? Authorization = may you?",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M2L1",
+   "type": "text",
+   "body": "Sign-in proves identity (email + password → session token).\nThe token rides in the Authorization header on every private request.\nRoles (student/instructor/author/admin) decide what each token may touch.\nPasswords are salted hashes — the server never stores the real one.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L5M2L1",
+   "type": "code",
+   "body": "await fetch('/api/lesson-progress', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },\n  body: JSON.stringify({ lessonId: 'L1M1L1', completed: true })\n});",
+   "language": "javascript",
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L5M2L1",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L5M2L2",
+   "type": "text",
+   "body": "Lesson: Authorization\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M2L3",
+   "type": "text",
+   "body": "Lesson: User Sessions\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M2L4",
+   "type": "text",
+   "body": "Lesson: User Profiles\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L5M2L5",
+   "type": "text",
+   "body": "Lesson: Secure Environment Variables + Multi-User App\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L6M1L1",
+   "type": "heading",
+   "body": "AI APIs: your server asks the model, the page never holds the key",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L6M1L1",
+   "type": "text",
+   "body": "The page sends your words to YOUR server. Your server adds the secret key and asks the AI model. The answer comes back through your server.\n\nKeys live in server .env only. Set spending caps. Stream long answers so the page feels alive.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L6M1L1",
+   "type": "prompt",
+   "body": "GOAL: add an AI reply to [feature]\nCONTEXT: my server file is [paste], key is in .env\nCONSTRAINTS: key never in client code, cap length\nEXAMPLE: 'user asks X, assistant answers in 2 sentences'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L6M1L1",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L6M1L2",
+   "type": "text",
+   "body": "Lesson: LLM API Concepts\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L6M1L3",
+   "type": "text",
+   "body": "Lesson: System Prompts\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L6M1L4",
+   "type": "text",
+   "body": "Lesson: User Prompts\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L6M1L5",
+   "type": "text",
+   "body": "Lesson: Context Management\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L6M2L1",
+   "type": "text",
+   "body": "Lesson: Structured Output\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L6M2L2",
+   "type": "text",
+   "body": "Lesson: Tool and Function Calling\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L6M2L3",
+   "type": "text",
+   "body": "Lesson: Streaming Responses\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L6M2L4",
+   "type": "text",
+   "body": "Lesson: Error Handling\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L6M2L5",
+   "type": "text",
+   "body": "Lesson: Usage and Cost Awareness + Assistant App\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M1L1",
+   "type": "heading",
+   "body": "Automations: trigger → AI step → action (+ human approval)",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M1L1",
+   "type": "text",
+   "body": "Every automation: something happens (trigger) → AI decides → something gets done (action).\nMoney moves only after a human approves.\nStart with a dry-run switch: log what WOULD happen before touching real data.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L7M1L1",
+   "type": "prompt",
+   "body": "GOAL: automate [task]\nCONTEXT: trigger is [event], data looks like [paste]\nCONSTRAINTS: dry-run first, approval before sending\nEXAMPLE: 'new row → AI drafts reply → I approve → send'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L7M1L1",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L7M1L2",
+   "type": "text",
+   "body": "Lesson: Triggers\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M1L3",
+   "type": "text",
+   "body": "Lesson: Actions\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M1L4",
+   "type": "text",
+   "body": "Lesson: Webhooks\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M1L5",
+   "type": "text",
+   "body": "Lesson: APIs for Automation\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M1L6",
+   "type": "text",
+   "body": "Lesson: Scheduled Workflows\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M2L1",
+   "type": "text",
+   "body": "Lesson: Data Processing\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M2L2",
+   "type": "text",
+   "body": "Lesson: Email Automation\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M2L3",
+   "type": "text",
+   "body": "Lesson: CRM Automation\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M2L4",
+   "type": "text",
+   "body": "Lesson: Social Automation\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M2L5",
+   "type": "text",
+   "body": "Lesson: AI Decision Steps\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L7M2L6",
+   "type": "text",
+   "body": "Lesson: Human Approval Workflows + Real Automation\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L8M1L1",
+   "type": "heading",
+   "body": "Agents: planner + allowlisted tools + verifier + memory",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L8M1L1",
+   "type": "text",
+   "body": "An agent plans steps, uses ONLY approved tools, checks its own work (verifier), and remembers (memory).\nSafety first: allowlist 2 tools, run in a sandbox, log every step, require approval for anything irreversible.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L8M1L1",
+   "type": "prompt",
+   "body": "GOAL: do [multi-step task]\nCONTEXT: allowed tools are [tool1, tool2], stop when [done looks like]\nCONSTRAINTS: use only allowlisted tools, show the plan first\nEXAMPLE: 'plan 3 steps, then run step 1'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L8M1L1",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L8M1L2",
+   "type": "text",
+   "body": "Lesson: Agent Architecture\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L8M1L3",
+   "type": "text",
+   "body": "Lesson: Tools\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L8M1L4",
+   "type": "text",
+   "body": "Lesson: Memory\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L8M1L5",
+   "type": "text",
+   "body": "Lesson: Planning\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L8M2L1",
+   "type": "text",
+   "body": "Lesson: Execution\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L8M2L2",
+   "type": "text",
+   "body": "Lesson: Verification\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L8M2L3",
+   "type": "text",
+   "body": "Lesson: Multi-Step Tasks\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L8M2L4",
+   "type": "text",
+   "body": "Lesson: Agent Safety and Permissions\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L8M2L5",
+   "type": "text",
+   "body": "Lesson: Multi-Agent Workflows + Task Agent\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M1L1",
+   "type": "text",
+   "body": "Lesson: Product Requirements\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M1L2",
+   "type": "text",
+   "body": "Lesson: System Architecture\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M1L3",
+   "type": "heading",
+   "body": "Frontend + mobile: same API, two faces (web + Expo phone app)",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M1L3",
+   "type": "text",
+   "body": "Your backend API serves BOTH faces.\n\n- Web face: HTML/CSS/JS pages.\n- Mobile face: Expo (runs on iOS + Android from one codebase). Screens call the SAME /api endpoints with the user's token.\n\nBuild web first, then add 3 Expo screens (list, detail, profile) + auth + push. Ship phones via EAS → TestFlight/Play internal.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L9M1L3",
+   "type": "terminal",
+   "body": "npx create-expo-app my-app\ncd my-app\nnpx expo start",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L9M1L3",
+   "type": "prompt",
+   "body": "GOAL: add a mobile screen for [feature]\nCONTEXT: API is [endpoint], token auth, Expo managed workflow\nCONSTRAINTS: reuse the same API, no keys in client\nEXAMPLE: 'list screen fetching /api/projects with token'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L9M1L3",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 5
+  },
+  {
+   "lesson_id": "L9M1L4",
+   "type": "text",
+   "body": "Lesson: Backend Build\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M1L5",
+   "type": "text",
+   "body": "Lesson: Database Build\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M1L6",
+   "type": "text",
+   "body": "Lesson: Authentication Build\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M1L7",
+   "type": "text",
+   "body": "Lesson: AI Integration Build\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M2L1",
+   "type": "text",
+   "body": "Lesson: Agent Workflows\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M2L2",
+   "type": "text",
+   "body": "Lesson: File Handling\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M2L3",
+   "type": "text",
+   "body": "Lesson: Notifications\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M2L4",
+   "type": "text",
+   "body": "Lesson: Logging\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M2L5",
+   "type": "text",
+   "body": "Lesson: Error Handling\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M2L6",
+   "type": "heading",
+   "body": "Test like a user, then like a machine",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M2L6",
+   "type": "text",
+   "body": "1. Click through as a user (happy path + one mistake).\n2. Add automated checks: one per feature (200 OK? correct text?).\n3. Run the full suite before every deploy: `npm test`.\nGreen suite = permission to ship.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L9M2L6",
+   "type": "terminal",
+   "body": "npm test",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L9M2L6",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L9M2L7",
+   "type": "text",
+   "body": "Lesson: Security\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L9M2L8",
+   "type": "text",
+   "body": "Lesson: Performance + SaaS Launch\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M1L1",
+   "type": "heading",
+   "body": "Ideas become PRDs: problem → users → features → stack → tasks",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M1L1",
+   "type": "text",
+   "body": "One page is enough:\nProblem (1 line) → Users → Must-have features (≤7) → Stack → Architecture (1 sketch) → Tasks in order → Deploy plan.\nThen paste it into the Project Planner to generate todos and track them.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L10M1L1",
+   "type": "prompt",
+   "body": "GOAL: turn my idea into a 1-page PRD\nCONTEXT: idea is [one paragraph], users are [who]\nCONSTRAINTS: max 7 features, smallest stack that works\nEXAMPLE: 'problem, users, features, stack, tasks'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L10M1L1",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L10M1L2",
+   "type": "text",
+   "body": "Lesson: Create PRD\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M1L3",
+   "type": "text",
+   "body": "Lesson: Define Features\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M1L4",
+   "type": "text",
+   "body": "Lesson: Design Architecture\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M1L5",
+   "type": "text",
+   "body": "Lesson: Choose Technologies\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M1L6",
+   "type": "text",
+   "body": "Lesson: Break Project into Tasks\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M2L1",
+   "type": "text",
+   "body": "Lesson: Prompt AI Coding Agents Effectively\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M2L2",
+   "type": "text",
+   "body": "Lesson: Review Generated Code\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M2L3",
+   "type": "text",
+   "body": "Lesson: Debug Independently\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M2L4",
+   "type": "text",
+   "body": "Lesson: Test Application\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M2L5",
+   "type": "heading",
+   "body": "Deploy: test → internal → production + watch",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M2L5",
+   "type": "text",
+   "body": "1. Full tests green.\n2. Backup data.\n3. Ship to an internal link, click everything.\n4. Ship production, then watch /api/health + /api/metrics for 15 minutes.\nKeep the last backup until the new version proves itself.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L10M2L5",
+   "type": "terminal",
+   "body": "sh deploy/backup.sh\nsh deploy/healthcheck.sh",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L10M2L5",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  },
+  {
+   "lesson_id": "L10M2L6",
+   "type": "text",
+   "body": "Lesson: Maintain Application\n\nAdd content using the lesson editor.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M2L7",
+   "type": "heading",
+   "body": "MVP: smallest thing that proves it + demo day",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 1
+  },
+  {
+   "lesson_id": "L10M2L7",
+   "type": "text",
+   "body": "Cut everything except the ONE workflow that proves value.\nSlice: auth → core CRUD → one AI step → test → deploy → 3-minute demo (problem, live click-through, what's next).\nShip, watch real users, improve weekly.",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 2
+  },
+  {
+   "lesson_id": "L10M2L7",
+   "type": "prompt",
+   "body": "GOAL: cut my PRD to an MVP slice\nCONTEXT: my PRD is [paste]\nCONSTRAINTS: 1 workflow, 2 weeks max, demoable link\nEXAMPLE: 'login → main action → done, live URL'",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 3
+  },
+  {
+   "lesson_id": "L10M2L7",
+   "type": "exercise",
+   "body": "",
+   "language": null,
+   "url": null,
+   "caption": null,
+   "order": 4
+  }
+ ],
+ "tools": [
+  {
+   "id": "tool-1",
+   "name": "ChatGPT",
+   "category": "AI Assistants",
+   "what": "Conversational AI for explanations and draft prompts.",
+   "price": "freemium",
+   "why": "Ask anything in plain words and get explanations, examples and starter prompts.",
+   "install": "Create a free account at chat.openai.com — runs in the browser, nothing to install.",
+   "steps": [
+    "Open chat.openai.com and sign up with email, Google or Apple.",
+    "Paste a lesson prompt, press Enter, read the answer fully.",
+    "Compare the answer against the lesson objective before moving on."
+   ],
+   "url": "https://chat.openai.com",
+   "website": "https://chat.openai.com",
+   "related_lessons": [
+    "L1M1L1",
+    "L1M1L2",
+    "L1M1L5"
+   ],
+   "order": 1
+  },
+  {
+   "id": "tool-2",
+   "name": "AI Coding Assistant",
+   "category": "Coding Agents",
+   "what": "Writes and edits code from plain-word prompts.",
+   "price": "freemium",
+   "why": "The core Vibe Coding engine: you describe, it writes the code, you review.",
+   "install": "Install an AI coding extension inside VS Code, then sign in.",
+   "steps": [
+    "Open VS Code → Extensions → install an AI coding assistant.",
+    "Sign in and open the lesson project folder.",
+    "Paste the lesson prompt and review every file it creates."
+   ],
+   "url": "https://code.visualstudio.com",
+   "website": "https://code.visualstudio.com",
+   "related_lessons": [
+    "L1M2L5",
+    "L2M1L1"
+   ],
+   "order": 2
+  },
+  {
+   "id": "tool-3",
+   "name": "VS Code",
+   "category": "IDEs",
+   "what": "Free code editor with AI extensions.",
+   "price": "free",
+   "why": "The home base where every project in this course gets built.",
+   "install": "Download the installer from code.visualstudio.com and accept the defaults.",
+   "steps": [
+    "Download the installer for your OS and accept the defaults.",
+    "Open the lesson project folder (not a single file).",
+    "Open the built-in terminal with View → Terminal."
+   ],
+   "url": "https://code.visualstudio.com/docs/setup",
+   "website": "https://code.visualstudio.com",
+   "related_lessons": [
+    "L2M1L1",
+    "L2M1L2"
+   ],
+   "order": 3
+  },
+  {
+   "id": "tool-4",
+   "name": "Figma",
+   "category": "Design Tools",
+   "what": "Free design tool for page mockups and layouts.",
+   "price": "freemium",
+   "why": "Sketch screens before coding so you rebuild less and finish faster.",
+   "install": "Create a free account at figma.com — it runs in the browser.",
+   "steps": [
+    "Sign up at figma.com on the free starter plan.",
+    "Make a phone-size frame (375×812) and block out 3 sections.",
+    "Share the link with your AI assistant as the design reference."
+   ],
+   "url": "https://help.figma.com/hc/en-us/categories/360002051613",
+   "website": "https://figma.com",
+   "related_lessons": [
+    "L3M2L1"
+   ],
+   "order": 4
+  },
+  {
+   "id": "tool-5",
+   "name": "Supabase",
+   "category": "Databases",
+   "what": "Postgres + auth + storage with instant APIs.",
+   "price": "freemium",
+   "why": "The backend for multi-user and AI apps: database, logins and file storage.",
+   "install": "Create a free project at supabase.com, then copy the URL + anon key into .env.",
+   "steps": [
+    "Create a free project at supabase.com and wait for provisioning.",
+    "Table Editor → New table (e.g. leads) with the lesson fields.",
+    "Copy the Project URL + anon key into .env — never commit the service key."
+   ],
+   "url": "https://supabase.com/docs",
+   "website": "https://supabase.com",
+   "related_lessons": [
+    "L5M1L1",
+    "L5M2L1"
+   ],
+   "order": 5
+  },
+  {
+   "id": "tool-6",
+   "name": "n8n",
+   "category": "Automation Platforms",
+   "what": "Visual workflow builder: triggers → AI → actions.",
+   "price": "freemium",
+   "why": "Run Level 7 automations without writing servers: drag, connect, activate.",
+   "install": "Start an n8n Cloud trial, or self-host with npm i -g n8n.",
+   "steps": [
+    "Start n8n — the Cloud trial is fastest for beginners.",
+    "Build Webhook trigger → AI step → send/CRM action.",
+    "Activate, send a test event, then add the human-approval gate from L7."
+   ],
+   "url": "https://docs.n8n.io",
+   "website": "https://n8n.io",
+   "related_lessons": [
+    "L7M1L1",
+    "L7M2L6"
+   ],
+   "order": 6
+  },
+  {
+   "id": "tool-7",
+   "name": "Node.js",
+   "category": "APIs",
+   "what": "Runs JavaScript and dev servers on your machine.",
+   "price": "free",
+   "why": "Required to run lesson servers, tools and build scripts locally.",
+   "install": "Install the LTS build from nodejs.org, then verify with node --version.",
+   "steps": [
+    "Install the LTS build from nodejs.org for your OS.",
+    "Verify: node --version and npm --version both print numbers.",
+    "Run npm run dev in the lesson folder and open the printed URL."
+   ],
+   "url": "https://nodejs.org/en/download",
+   "website": "https://nodejs.org",
+   "related_lessons": [
+    "L2M1L5",
+    "L2M2L5"
+   ],
+   "order": 7
+  },
+  {
+   "id": "tool-8",
+   "name": "GitHub",
+   "category": "Git/GitHub",
+   "what": "Hosts code with version history.",
+   "price": "free",
+   "why": "Backup for every project plus the portfolio employers actually open.",
+   "install": "Create an account at github.com, install git, set your name and email.",
+   "steps": [
+    "Sign up at github.com and verify your email.",
+    "Set git config user.name and user.email in the terminal.",
+    "Push the lesson repo: init → add → commit → push (see L2M1L4)."
+   ],
+   "url": "https://docs.github.com/get-started",
+   "website": "https://github.com",
+   "related_lessons": [
+    "L2M1L4"
+   ],
+   "order": 8
+  },
+  {
+   "id": "tool-9",
+   "name": "Git",
+   "category": "Git/GitHub",
+   "what": "Version control for every project.",
+   "price": "free",
+   "why": "Undo mistakes and track exactly what changed, file by file.",
+   "install": "Install from git-scm.com (or Xcode tools / Git for Windows).",
+   "steps": [
+    "Install git, then check git --version prints a number.",
+    "Practice status → add → commit → log in a scratch folder.",
+    "Learn undo: git restore for files, git revert for commits."
+   ],
+   "url": "https://git-scm.com/book/en/v2/Getting-Started-Installing-Git",
+   "website": "https://git-scm.com",
+   "related_lessons": [
+    "L2M1L3"
+   ],
+   "order": 9
+  },
+  {
+   "id": "tool-10",
+   "name": "Netlify",
+   "category": "Hosting",
+   "what": "Free static hosting with instant deploy previews.",
+   "price": "freemium",
+   "why": "Publish Level 3 websites to a real link in minutes, free.",
+   "install": "Sign up at netlify.com, then drag-and-drop the build folder.",
+   "steps": [
+    "Build the site (npm run build) and find the output folder.",
+    "Drag that folder onto Netlify Drop — or connect the GitHub repo.",
+    "Copy the live URL and test it on your phone."
+   ],
+   "url": "https://docs.netlify.com",
+   "website": "https://netlify.com",
+   "related_lessons": [
+    "L3M2L6"
+   ],
+   "order": 10
+  },
+  {
+   "id": "tool-11",
+   "name": "Expo",
+   "category": "Deployment",
+   "what": "Builds phone apps for iOS + Android.",
+   "price": "free",
+   "why": "How this course itself ships to phones: one codebase, both stores.",
+   "install": "Install the CLI and scaffold with npx create-expo-app — see the docs.",
+   "steps": [
+    "Install the CLI and scaffold the lesson app.",
+    "Run npx expo start and scan the QR with Expo Go.",
+    "Ship with EAS build → store tracks (see L10M2L5)."
+   ],
+   "url": "https://docs.expo.dev",
+   "website": "https://expo.dev",
+   "related_lessons": [
+    "L10M2L5"
+   ],
+   "order": 11
+  },
+  {
+   "id": "tool-12",
+   "name": "Browser DevTools",
+   "category": "Testing",
+   "what": "Inspect and debug any web page.",
+   "price": "free",
+   "why": "See errors and fix layouts fast without guessing.",
+   "install": "Built into Chrome/Safari: press F12 (Mac: Cmd+Opt+I).",
+   "steps": [
+    "Open your page and press F12 (Mac: Cmd+Opt+I).",
+    "Console tab: read the first red error top to bottom.",
+    "Elements tab: click the page, tweak CSS live, copy the fix."
+   ],
+   "url": "https://developer.chrome.com/docs/devtools",
+   "website": "https://developer.chrome.com/docs/devtools",
+   "related_lessons": [
+    "L3M2L5"
+   ],
+   "order": 12
+  },
+  {
+   "id": "tool-13",
+   "name": "Terminal",
+   "category": "Productivity",
+   "what": "Command line to run servers and git.",
+   "price": "free",
+   "why": "The essential developer skill this course teaches gently, step by step.",
+   "install": "Already built into Mac, Windows and Linux — no install needed.",
+   "steps": [
+    "Open Terminal (Mac) or PowerShell/Terminal (Windows).",
+    "Practice: pwd → ls → cd into the lesson folder.",
+    "Run one safe command from the lesson, then echo hello."
+   ],
+   "url": "https://support.apple.com/guide/terminal/welcome/mac",
+   "website": "https://support.apple.com/guide/terminal/welcome/mac",
+   "related_lessons": [
+    "L2M2L1"
+   ],
+   "order": 13
+  }
+ ],
+ "projects": [
+  {
+   "id": "P01",
+   "title": "Personal Website",
+   "level": 3,
+   "req": "3 pages, responsive, contact form",
+   "arch": "Static site + components",
+   "stack": "HTML • CSS • JS",
+   "setup": "Install VS Code → scaffold → run dev → add assets",
+   "stages": "Generate → Style → Navigate → Debug → Publish",
+   "deploy": "Static hosting",
+   "done": "Responsive + form + live URL",
+   "order": 1
+  },
+  {
+   "id": "P02",
+   "title": "Landing Page",
+   "level": 3,
+   "req": "Hero, features, signup form",
+   "arch": "Single-page marketing site",
+   "stack": "HTML • CSS • JS",
+   "setup": "Sketch → scaffold from sketch → dev with phone view",
+   "stages": "Copy → Sections → Form → Polish",
+   "deploy": "Static hosting",
+   "done": "Clear CTA + mobile + tested signup",
+   "order": 2
+  },
+  {
+   "id": "P03",
+   "title": "CRUD Application",
+   "level": 4,
+   "req": "Create/read/update/delete + errors",
+   "arch": "Frontend + REST API (JSON)",
+   "stack": "JS • Node • REST",
+   "setup": "Define item shape → run API + client → open Network tab",
+   "stages": "API → UI → Forms → Errors",
+   "deploy": "Web host",
+   "done": "All CRUD works live",
+   "order": 3
+  },
+  {
+   "id": "P04",
+   "title": "AI Chat Application",
+   "level": 6,
+   "req": "Chat UI, LLM API, streaming",
+   "arch": "Chat client → server → LLM (keys server-side)",
+   "stack": "JS • LLM API",
+   "setup": "Key in server .env only → scaffold chat + /api/chat → set caps",
+   "stages": "Prompts → API → Streaming → Caps",
+   "deploy": "Web host",
+   "done": "Streams + handles errors + capped",
+   "order": 4
+  },
+  {
+   "id": "P05",
+   "title": "Business Automation",
+   "level": 7,
+   "req": "Trigger, AI step, notify + approval",
+   "arch": "Webhook → AI → CRM/email + approval gate",
+   "stack": "Webhooks • n8n • LLM",
+   "setup": "n8n workflow + test trigger → connect source → dry-run mode",
+   "stages": "Trigger → AI decision → Action → Approval",
+   "deploy": "Automation platform",
+   "done": "Approval gate + CRM + alerts",
+   "order": 5
+  },
+  {
+   "id": "P06",
+   "title": "AI Customer Support System",
+   "level": 7,
+   "req": "FAQ bot, escalation, logs",
+   "arch": "Chat → KB retriever → grounded answers → handoff",
+   "stack": "LLM API • DB",
+   "setup": "Write 10 FAQs → scaffold chat + /api/support → review queue",
+   "stages": "KB → Bot → Handoff",
+   "deploy": "Web + API",
+   "done": "Escalates with context, never invents",
+   "order": 6
+  },
+  {
+   "id": "P07",
+   "title": "AI Agent",
+   "level": 8,
+   "req": "Tools, memory, verify, permissions",
+   "arch": "Planner → allowlisted tools → verifier + memory",
+   "stack": "LLM API • Agent runtime",
+   "setup": "Define goal + 2 tools → allowlist → run log",
+   "stages": "Tools → Memory → Verify → Permissions",
+   "deploy": "Sandboxed host",
+   "done": "Allowlist + verify + end-to-end demo",
+   "order": 7
+  },
+  {
+   "id": "P08",
+   "title": "Mobile Application",
+   "level": 9,
+   "req": "Expo app, auth, push",
+   "arch": "Expo → API → Postgres + push",
+   "stack": "Expo • Supabase",
+   "setup": "create-expo-app → Expo Go → Supabase .env → EAS id",
+   "stages": "Screens → API → Auth → Store build",
+   "deploy": "TestFlight + Play tracks",
+   "done": "Runs on phone, auth + push tested",
+   "order": 8
+  },
+  {
+   "id": "P09",
+   "title": "SaaS Application",
+   "level": 9,
+   "req": "Auth, AI feature, launch checklist",
+   "arch": "Web → API → Postgres RLS → AI + jobs",
+   "stack": "JS • Node • Postgres",
+   "setup": "Scaffold from PRD → users+plans RLS → monitoring first",
+   "stages": "PRD → Build → Harden → Launch",
+   "deploy": "Prod host + CDN",
+   "done": "Secure + monitored + demo video",
+   "order": 9
+  },
+  {
+   "id": "P10",
+   "title": "Student's Own AI Product",
+   "level": 10,
+   "req": "PRD, MVP, AI, deploy, demo",
+   "arch": "Student-designed, L9-hardened",
+   "stack": "Student choice",
+   "setup": "One-page PRD → MVP slice → repo + hosting",
+   "stages": "Idea → MVP → AI → Test → Deploy → Present",
+   "deploy": "Student launch",
+   "done": "Live demo + docs + maintainable",
+   "order": 10
+  }
+ ],
+ "project_details": {
+  "P01": {
+   "id": "P01",
+   "title": "Personal Website",
+   "level": 3,
+   "req": "3 pages, responsive, contact form",
+   "handholding": "Full guidance — every click shown",
+   "requirements": [
+    "3 pages: Home, About, Contact",
+    "Responsive on phone + desktop widths",
+    "Contact form validates + shows success",
+    "Your photo, bio and contact links included"
+   ],
+   "stack": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "VS Code",
+    "Netlify"
+   ],
+   "setup": [
+    "Install VS Code, open a folder named personal-site.",
+    "Scaffold 3 HTML pages sharing one stylesheet + one script.",
+    "Run a local server (npx serve .) and open the URL.",
+    "Create assets/ with one photo + favicon."
+   ],
+   "stages": [
+    "Generate the 3-page skeleton with AI",
+    "Style hero, cards and footer mobile-first",
+    "Add navigation with active-page highlight",
+    "Add + validate the contact form",
+    "Debug at phone width, then publish"
+   ],
+   "prompts": [
+    "GOAL: 3-page personal site (Home/About/Contact). CONTEXT: vanilla HTML/CSS/JS, one stylesheet. CONSTRAINTS: mobile-first, semantic tags. EXAMPLE: header/nav/main/footer per page.",
+    "GOAL: style system. CONTEXT: my unstyled pages. CONSTRAINTS: 2 fonts max, 3 colors. EXAMPLE: hero with headline + button.",
+    "GOAL: contact form. CONTEXT: no backend. CONSTRAINTS: validate email + message in-browser, success note. EXAMPLE: red hints, green confirm."
+   ],
+   "testing": [
+    "Phone + desktop widths: no sideways scroll",
+    "Submit form empty (errors) then valid (success)",
+    "Every nav link lands on the right page + highlight"
+   ],
+   "debugging": [
+    "Blank page? DevTools Console → fix the first red error",
+    "Broken on phone? Toggle device toolbar, fix the breakpoint"
+   ],
+   "deployment": [
+    "Drag the folder to Netlify Drop",
+    "Open the live URL on your phone, keep the link"
+   ],
+   "checklist": [
+    "Responsive phone + desktop",
+    "Form validates + succeeds",
+    "Live URL posted in Showcase"
+   ]
+  },
+  "P02": {
+   "id": "P02",
+   "title": "Landing Page",
+   "level": 3,
+   "req": "Hero, features, signup form",
+   "handholding": "Full guidance — every click shown",
+   "requirements": [
+    "Hero with headline + single CTA",
+    "Features section with 3 items",
+    "Signup form with success state",
+    "Mobile-first, fast load"
+   ],
+   "stack": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Figma",
+    "Netlify"
+   ],
+   "setup": [
+    "Sketch hero + 3 features on paper or one Figma phone frame.",
+    "Scaffold the page from your sketch with AI.",
+    "Serve locally, keep a phone-width window open while styling."
+   ],
+   "stages": [
+    "Write copy: headline, subhead, CTA text",
+    "Build hero + features + signup sections",
+    "Wire signup validation + success",
+    "Polish spacing, images, speed"
+   ],
+   "prompts": [
+    "GOAL: landing page for [product]. CONTEXT: single file + styles. CONSTRAINTS: one CTA, mobile-first. EXAMPLE: hero, 3 features, signup, footer.",
+    "GOAL: sharper headline. CONTEXT: current draft. CONSTRAINTS: 5 options, plain words. EXAMPLE: one promise + one button.",
+    "GOAL: signup validation. CONTEXT: no backend. CONSTRAINTS: email check, inline errors, success without reload."
+   ],
+   "testing": [
+    "Empty/invalid/valid signup → correct message each time",
+    "Phone + desktop visual pass, CTA visible without scroll",
+    "Images sized, no layout shift on load"
+   ],
+   "debugging": [
+    "Weak CTA? Read headline aloud — one promise, one button",
+    "Shift on load? Set image dimensions + preload the font"
+   ],
+   "deployment": [
+    "Publish via Netlify Drop or connected repo",
+    "Share live link + headline in Community for feedback"
+   ],
+   "checklist": [
+    "One clear CTA above the fold",
+    "Clean mobile layout",
+    "Live URL + signup tested end to end"
+   ]
+  },
+  "P03": {
+   "id": "P03",
+   "title": "CRUD Application",
+   "level": 4,
+   "req": "Create/read/update/delete + errors",
+   "handholding": "Full guidance — every click shown",
+   "requirements": [
+    "Create, read, update, delete items",
+    "Friendly error on every failure",
+    "Data survives refresh",
+    "Loading + empty states"
+   ],
+   "stack": [
+    "JavaScript",
+    "Node.js",
+    "REST",
+    "JSON store",
+    "VS Code"
+   ],
+   "setup": [
+    "Create crud-app, npm init -y, install minimal server deps.",
+    "Define the item shape {id, title, done} in one shared file.",
+    "Run API + client together, keep the Network tab open."
+   ],
+   "stages": [
+    "Design API: 4 routes + JSON shapes",
+    "Build list + create UI",
+    "Add edit + delete with confirm",
+    "Add errors, loading + empty states"
+   ],
+   "prompts": [
+    "GOAL: REST API for items. CONTEXT: Node, JSON file store. CONSTRAINTS: GET/POST/PUT/DELETE, status codes. EXAMPLE: {id,title,done}.",
+    "GOAL: CRUD UI. CONTEXT: my API above. CONSTRAINTS: confirm before delete, optimistic list. EXAMPLE: add → appears instantly.",
+    "GOAL: resilient UI. CONTEXT: API can be down. CONSTRAINTS: friendly error card, retry button, skeleton rows."
+   ],
+   "testing": [
+    "Happy path: add → see → edit → delete → gone",
+    "Stop the API: friendly error, never blank page",
+    "Refresh mid-list: everything still there"
+   ],
+   "debugging": [
+    "Network tab first: method, URL, status, body — in that order",
+    "Refresh wipes data? Save path disconnected — recheck write call"
+   ],
+   "deployment": [
+    "Host API + static client (one service or split)",
+    "Smoke-test all 4 operations on the live URL"
+   ],
+   "checklist": [
+    "CRUD works live",
+    "Errors friendly, never blank",
+    "Deployed + smoke-tested URL"
+   ]
+  },
+  "P04": {
+   "id": "P04",
+   "title": "AI Chat Application",
+   "level": 6,
+   "req": "Chat UI, LLM API, streaming",
+   "handholding": "Medium guidance — checklists + hints",
+   "requirements": [
+    "Chat UI with history",
+    "LLM via server route, system + user prompts",
+    "Streaming token-by-token replies",
+    "Usage + cost caps with fallback"
+   ],
+   "stack": [
+    "JavaScript",
+    "Node.js",
+    "LLM API",
+    "Supabase"
+   ],
+   "setup": [
+    "Create LLM key, store ONLY server-side in .env.",
+    "Scaffold chat UI + POST /api/chat forwarding to the LLM.",
+    "Set caps: max tokens per reply + per day."
+   ],
+   "stages": [
+    "Write system prompt: role, rules, refusals",
+    "Wire /api/chat with history context",
+    "Add streaming render + typing dots",
+    "Add caps, error fallback, cost log"
+   ],
+   "prompts": [
+    "GOAL: tutor system prompt. CONTEXT: beginners. CONSTRAINTS: short answers, one step at a time, refuse direct homework answers. EXAMPLE: hint, then check.",
+    "GOAL: better replies. CONTEXT: last 6 messages. CONSTRAINTS: stay in role, cite the step. EXAMPLE: good vs rambling reply.",
+    "GOAL: streaming + cap. CONTEXT: 200-token budget. CONSTRAINTS: render chunks, friendly “continued…” cutoff."
+   ],
+   "testing": [
+    "5 fixed questions → sane, on-role answers",
+    "Remove the key: fallback message, no crash",
+    "20-turn chat: coherent, cap enforced"
+   ],
+   "debugging": [
+    "Cost spike? Log prompt + tokens per reply, trim history",
+    "Garbled output? Enforce schema + retry once"
+   ],
+   "deployment": [
+    "Host web + server route, env vars in host dashboard",
+    "Watch day-one token usage against the cap"
+   ],
+   "checklist": [
+    "Streams smoothly",
+    "Key-off/limit handled gracefully",
+    "Cost cap tested + live"
+   ]
+  },
+  "P05": {
+   "id": "P05",
+   "title": "Business Automation",
+   "level": 7,
+   "req": "Trigger, AI step, notify + approval",
+   "handholding": "Medium guidance — checklists + hints",
+   "requirements": [
+    "Event trigger from a real source",
+    "AI classify/score step",
+    "Notify + CRM/email action",
+    "Human approval before any send"
+   ],
+   "stack": [
+    "Webhooks",
+    "n8n",
+    "LLM API",
+    "Supabase"
+   ],
+   "setup": [
+    "Create an n8n workflow with a manual test trigger.",
+    "Connect one source: form webhook or test event sender.",
+    "Enable dry-run: log actions instead of sending."
+   ],
+   "stages": [
+    "Define trigger + event shape",
+    "Add AI classify + score",
+    "Add notify + CRM actions",
+    "Add approval gate, go live from dry-run"
+   ],
+   "prompts": [
+    "GOAL: classify lead. CONTEXT: raw message. CONSTRAINTS: intent + score 0-1 + route reply/escalate/ignore. EXAMPLE: scored sample.",
+    "GOAL: welcome reply. CONTEXT: my voice, new lead. CONSTRAINTS: 3 sentences, opt-out line. EXAMPLE: warm + short.",
+    "GOAL: approval summary. CONTEXT: run result. CONSTRAINTS: what, why, confidence in 4 lines."
+   ],
+   "testing": [
+    "Dry-run: 10 events logged, zero sent",
+    "Approve → sent; reject → skipped + logged",
+    "Malformed event: skipped with reason, workflow stays green"
+   ],
+   "debugging": [
+    "Failed run? Open run history, compare node input vs expected shape",
+    "Misroutes? Add 2 examples to the prompt, re-run eval set"
+   ],
+   "deployment": [
+    "Activate n8n workflow or hosted route + scheduler",
+    "Go-live order: dry-run clean → approval tested → failure alerts on"
+   ],
+   "checklist": [
+    "Approval blocks unapproved sends",
+    "CRM updated every run",
+    "Failure notifications wired"
+   ]
+  },
+  "P06": {
+   "id": "P06",
+   "title": "AI Customer Support System",
+   "level": 7,
+   "req": "FAQ bot, escalation, logs",
+   "handholding": "Medium guidance — checklists + hints",
+   "requirements": [
+    "FAQ bot grounded in your docs",
+    "Human escalation with full context",
+    "Conversation log + review queue",
+    "Says “I don’t know” instead of inventing"
+   ],
+   "stack": [
+    "LLM API",
+    "Supabase",
+    "JavaScript"
+   ],
+   "setup": [
+    "Write 10 FAQs as plain Q/A documents (the knowledge base).",
+    "Scaffold chat UI + /api/support with retrieval over FAQs.",
+    "Create the review queue for flagged answers."
+   ],
+   "stages": [
+    "Build the 10-doc knowledge base",
+    "Wire grounded answers (docs only)",
+    "Add escalation with transcript",
+    "Review weekly, grow the KB"
+   ],
+   "prompts": [
+    "GOAL: grounded answer. CONTEXT: retrieved docs below. CONSTRAINTS: answer ONLY from docs, else offer escalation. EXAMPLE: cited answer vs “I don’t know”.",
+    "GOAL: handoff summary. CONTEXT: full chat. CONSTRAINTS: issue, tried steps, sentiment in 5 lines.",
+    "GOAL: quality flag. CONTEXT: bot answer + docs. CONSTRAINTS: correct/partial/wrong + missing doc."
+   ],
+   "testing": [
+    "15 FAQ questions → grounded + correct; 5 off-topic → graceful “don’t know”",
+    "Escalation always carries transcript + summary",
+    "Spot-check 20 answers against docs, zero inventions"
+   ],
+   "debugging": [
+    "Wrong answer? Check WHICH doc retrieved — fix the doc first",
+    "Hallucinations? Lower temperature, stricter “docs-only”, cite sources"
+   ],
+   "deployment": [
+    "Host web + API; KB editable without redeploy",
+    "Put the weekly review on your calendar"
+   ],
+   "checklist": [
+    "Escalates with context",
+    "Never invents policies",
+    "Review queue processed weekly"
+   ]
+  },
+  "P07": {
+   "id": "P07",
+   "title": "AI Agent",
+   "level": 8,
+   "req": "Tools, memory, verify, permissions",
+   "handholding": "Low guidance — plan + review points",
+   "requirements": [
+    "2+ tools with strict JSON schemas",
+    "Short-term notes + long-term facts",
+    "Plan → act → verify loop",
+    "Allowlist permissions + approvals"
+   ],
+   "stack": [
+    "LLM API",
+    "Node.js",
+    "Agent runtime",
+    "Supabase"
+   ],
+   "setup": [
+    "Define the goal + 2 tools (search, save) with JSON schemas.",
+    "Write the allowlist: exactly what the agent may call/send.",
+    "Seed one run log to observe plan → act → verify."
+   ],
+   "stages": [
+    "Add tools with schemas + dry-run",
+    "Add memory: notes + facts",
+    "Add plan + verify loop",
+    "Lock permissions, ship sandboxed"
+   ],
+   "prompts": [
+    "GOAL: act in small steps. CONTEXT: goal + tools. CONSTRAINTS: one call per step, verify before next. EXAMPLE: planned 5-step run.",
+    "GOAL: verify a step. CONTEXT: step result. CONSTRAINTS: pass/fail + what is missing.",
+    "GOAL: run summary. CONTEXT: full log. CONSTRAINTS: steps done, facts learned, approvals needed."
+   ],
+   "testing": [
+    "5-step research task completes with checkpoints",
+    "Denied tool → stops + explains, never sneaks around",
+    "Resume from checkpoint 3 after forced stop"
+   ],
+   "debugging": [
+    "Read the run log top-down: planner, tool args, verifier verdict",
+    "Looping? Cap at 8 steps, require new evidence per retry"
+   ],
+   "deployment": [
+    "Sandboxed host, secrets server-side, approval for sends",
+    "Keep one run log per execution for audits"
+   ],
+   "checklist": [
+    "Respects allowlist + approvals",
+    "Verifies before advancing",
+    "End-to-end task demoed"
+   ]
+  },
+  "P08": {
+   "id": "P08",
+   "title": "Mobile Application",
+   "level": 9,
+   "req": "Expo app, auth, push",
+   "handholding": "Low guidance — plan + review points",
+   "requirements": [
+    "Expo app, 3+ screens",
+    "Email auth + profiles",
+    "Push for key events",
+    "Runs on a real phone"
+   ],
+   "stack": [
+    "Expo",
+    "Supabase",
+    "LLM API"
+   ],
+   "setup": [
+    "Scaffold with create-expo-app, open in Expo Go on your phone.",
+    "Create Supabase project, copy URL + anon key to .env.",
+    "Configure the EAS project id for store builds."
+   ],
+   "stages": [
+    "Build screens with loading/empty/error",
+    "Wire API + database with owner rules",
+    "Add auth + profiles",
+    "Add push + store-track build"
+   ],
+   "prompts": [
+    "GOAL: Expo app. CONTEXT: Home/Detail/Settings. CONSTRAINTS: loading/empty/error states each screen. EXAMPLE: list screen fetch.",
+    "GOAL: auth + profiles. CONTEXT: Supabase. CONSTRAINTS: sign-up, verify, edit name/photo. EXAMPLE: session persist.",
+    "GOAL: push for [event]. CONTEXT: user toggle. CONSTRAINTS: permission prompt once, deep link."
+   ],
+   "testing": [
+    "Real phone, slow network, airplane-mode reopen",
+    "Sign-up → verify → profile → logout → session persists",
+    "Push arrives with the right deep link"
+   ],
+   "debugging": [
+    "Weird Expo state? Re-run with --clear, read the stack top-down",
+    "Auth fails on device? Check .env, URL allowlist, clock skew"
+   ],
+   "deployment": [
+    "EAS build → TestFlight internal + Play internal",
+    "Promote to production after device smoke test"
+   ],
+   "checklist": [
+    "Runs from a store track",
+    "Auth + profiles persist",
+    "Push tested end to end"
+   ]
+  },
+  "P09": {
+   "id": "P09",
+   "title": "SaaS Application",
+   "level": 9,
+   "req": "Auth, AI feature, launch checklist",
+   "handholding": "Low guidance — plan + review points",
+   "requirements": [
+    "Auth + roles ready",
+    "Core workflow + one AI feature",
+    "Plans table for future billing",
+    "Launch hardening done"
+   ],
+   "stack": [
+    "JavaScript",
+    "Node.js",
+    "Postgres",
+    "LLM API"
+   ],
+   "setup": [
+    "Scaffold client, API, db from your PRD.",
+    "Create users + plans tables with owner RLS policies.",
+    "Add monitoring + error tracking before any users."
+   ],
+   "stages": [
+    "PRD → architecture → scaffold",
+    "Core workflow + AI feature with caps",
+    "Harden: tests, security, speed",
+    "Launch + monitor week one"
+   ],
+   "prompts": [
+    "GOAL: SaaS scaffold. CONTEXT: PRD below. CONSTRAINTS: auth, db, one AI feature. EXAMPLE: route + table pairs.",
+    "GOAL: launch hardening. CONTEXT: my repo. CONSTRAINTS: tests, RLS, rate limits, backups with commands.",
+    "GOAL: pricing review. CONTEXT: my gate code. CONSTRAINTS: free vs pro paths, no leaks."
+   ],
+   "testing": [
+    "Sign-up → workflow → AI feature → billing gates",
+    "RLS denies cross-user reads, rate limit holds",
+    "Core routes p95 under 500ms"
+   ],
+   "debugging": [
+    "Reproduce from the logged route + payload, fix, add regression test",
+    "Slow route? Log query times, add the missing index"
+   ],
+   "deployment": [
+    "Prod host + CDN, env vars + backups verified",
+    "Week-one watch: errors, usage, costs daily"
+   ],
+   "checklist": [
+    "Secure + monitored",
+    "Billing gates correct",
+    "Demo video recorded"
+   ]
+  },
+  "P10": {
+   "id": "P10",
+   "title": "Student's Own AI Product",
+   "level": 10,
+   "req": "PRD, MVP, AI, deploy, demo",
+   "handholding": "Independent — you plan, AI critiques",
+   "requirements": [
+    "One-page PRD you wrote",
+    "MVP slice with AI step",
+    "Deployed + demoed live",
+    "Docs a stranger can follow"
+   ],
+   "stack": [
+    "Your choice",
+    "Justify each pick",
+    "Server-side AI keys"
+   ],
+   "setup": [
+    "Write the one-page PRD: user, problem, MVP slice.",
+    "Create repo + hosting on day one.",
+    "List the 5 riskiest unknowns in order."
+   ],
+   "stages": [
+    "Idea → PRD → task slice",
+    "Build auth + core data",
+    "Add the AI step with caps",
+    "Test + deploy the slice",
+    "Demo, docs, next 3 steps"
+   ],
+   "prompts": [
+    "GOAL: PRD critique. CONTEXT: my draft. CONSTRAINTS: cut to MVP, name the slice. EXAMPLE: tight vs bloated scope.",
+    "GOAL: architecture. CONTEXT: my PRD. CONSTRAINTS: client/API/db/AI, justify each tech.",
+    "GOAL: demo script. CONTEXT: my MVP. CONSTRAINTS: 3 minutes, live clicks, backup video."
+   ],
+   "testing": [
+    "Stranger test: can someone run it from your README?",
+    "Happy path + one failure path on the live URL",
+    "AI step capped, errors friendly"
+   ],
+   "debugging": [
+    "Stuck over an hour? Shrink the slice, log the blocker, ask with context",
+    "Flaky demo? Record the backup video first, then go live"
+   ],
+   "deployment": [
+    "Your launch: live URL + repo + docs",
+    "Present: problem, demo, what broke, what is next"
+   ],
+   "checklist": [
+    "Live demo + recording",
+    "Docs + maintainable repo",
+    "Presented to at least one human"
+   ]
+  }
+ },
+ "meetings": [
+  {
+   "id": "meet-weekly",
+   "title": "Weekly Meet & Greet with the Author",
+   "starts_at": "2026-10-15T02:11:19.647Z",
+   "join_url": "https://meet.aimasterplan.app/weekly",
+   "recurring": "weekly"
+  }
+ ]
+}

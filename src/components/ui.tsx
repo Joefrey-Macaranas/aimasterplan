@@ -16,6 +16,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 import { Theme } from '../theme';
+import { useTheme } from '../store/theme';
 import { Svg, Path, Circle } from 'react-native-svg';
 import { MelroseIcon, type MelroseName } from './icons';
 
@@ -33,11 +34,13 @@ export function useResponsive() {
 
 // Screen: SafeArea + responsive padding + centered max-width column.
 // Use on every screen for consistent phone/tablet + Android/iOS notch handling.
+// Theme-aware: bg follows light/dark mode.
 export function Screen({ children, padded = true }: { children: React.ReactNode; padded?: boolean }) {
   const { pad, maxW } = useResponsive();
+  const { colors } = useTheme();
   return (
-    <SafeAreaView style={styles.safe} edges={['top', 'bottom', 'left', 'right']}>
-      <View style={[styles.screen, padded && { padding: pad }]}>
+    <SafeAreaView style={[styles.safe, { backgroundColor: colors.bg }]} edges={['top', 'bottom', 'left', 'right']}>
+      <View style={[styles.screen, { backgroundColor: colors.bg }, padded && { padding: pad }]}>
         <View style={{ width: '100%', maxWidth: maxW, alignSelf: 'center', flex: 1 }}>{children}</View>
       </View>
     </SafeAreaView>
@@ -62,38 +65,47 @@ export function Grid({ children, gap = 8 }: { children: React.ReactNode; gap?: n
 }
 
 export function H1({ children, style }: { children: React.ReactNode; style?: StyleProp<TextStyle> }) {
-  return <Text style={[styles.h1, style]}>{children}</Text>;
+  const { colors } = useTheme();
+  return <Text style={[styles.h1, { color: colors.text }, style]}>{children}</Text>;
 }
 export function H2({ children }: { children: React.ReactNode }) {
-  return <Text style={styles.h2}>{children}</Text>;
+  const { colors } = useTheme();
+  return <Text style={[styles.h2, { color: colors.text }]}>{children}</Text>;
 }
 export function H3({ children }: { children: React.ReactNode }) {
-  return <Text style={styles.h3}>{children}</Text>;
+  const { colors } = useTheme();
+  return <Text style={[styles.h3, { color: colors.text }]}>{children}</Text>;
 }
 export function Body({ children }: { children: React.ReactNode }) {
-  return <Text style={styles.body}>{children}</Text>;
+  const { colors } = useTheme();
+  return <Text style={[styles.body, { color: colors.text }]}>{children}</Text>;
 }
 export function Muted({ children }: { children: React.ReactNode }) {
-  return <Text style={styles.muted}>{children}</Text>;
+  const { colors } = useTheme();
+  return <Text style={[styles.muted, { color: colors.muted }]}>{children}</Text>;
 }
 export function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <Text style={styles.eyebrow}>{children}</Text>;
+  const { colors } = useTheme();
+  return <Text style={[styles.eyebrow, { color: colors.muted }]}>{children}</Text>;
 }
 
 export function Card({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) {
-  return <View style={[styles.card, style]}>{children}</View>;
+  const { colors } = useTheme();
+  return <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }, style]}>{children}</View>;
 }
 
 export function Divider() {
-  return <View style={styles.divider} />;
+  const { colors } = useTheme();
+  return <View style={[styles.divider, { backgroundColor: colors.border }]} />;
 }
 
 export function Chip({ label, tone = 'default', icon }: { label: string; tone?: 'default' | 'success' | 'warning' | 'accent'; icon?: MelroseName }) {
+  const { colors, dark } = useTheme();
   const bg =
-    tone === 'success' ? '#e6f4ea' : tone === 'warning' ? '#fef7e0' : tone === 'accent' ? '#000000' : Theme.colors.surface;
-  const fg = tone === 'success' ? Theme.colors.success : tone === 'warning' ? Theme.colors.warning : tone === 'accent' ? '#fff' : Theme.colors.muted;
+    tone === 'success' ? (dark ? '#052e16' : '#e6f4ea') : tone === 'warning' ? (dark ? '#422006' : '#fef7e0') : tone === 'accent' ? colors.primary : colors.surface;
+  const fg = tone === 'success' ? colors.success : tone === 'warning' ? colors.warning : tone === 'accent' ? colors.onPrimary : colors.muted;
   return (
-    <View style={[styles.chip, { backgroundColor: bg, borderColor: Theme.colors.border }]}>
+    <View style={[styles.chip, { backgroundColor: bg, borderColor: colors.border }]}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         {icon ? <MelroseIcon name={icon} size={13} color={fg} /> : null}
         <Text style={[styles.chipText, { color: fg }]}>{label}</Text>
@@ -104,9 +116,10 @@ export function Chip({ label, tone = 'default', icon }: { label: string; tone?: 
 
 export function ProgressBar({ pct }: { pct: number }) {
   const clamped = Math.max(0, Math.min(100, pct));
+  const { colors } = useTheme();
   return (
-    <View style={styles.barTrack} accessibilityLabel={`Progress ${clamped} percent`}>
-      <View style={[styles.barFill, { width: `${clamped}%` }]} />
+    <View style={[styles.barTrack, { backgroundColor: colors.surface, borderColor: colors.border }]} accessibilityLabel={`Progress ${clamped} percent`}>
+      <View style={[styles.barFill, { backgroundColor: colors.primary, width: `${clamped}%` }]} />
     </View>
   );
 }
@@ -115,39 +128,43 @@ const MIN_TOUCH = { minHeight: Theme.touch.min, justifyContent: 'center' as cons
 
 // Primary gold CTA — 44px+ target, works on iOS/Android/web.
 export function PrimaryButton({ title, onPress }: { title: string; onPress?: () => void }) {
+  const { colors } = useTheme();
   return (
-    <Pressable onPress={onPress} style={[styles.primary, MIN_TOUCH]} accessibilityRole="button">
-      <Text style={styles.primaryText}>{title}</Text>
+    <Pressable onPress={onPress} style={[styles.primary, { backgroundColor: colors.primary, borderColor: colors.primary }, MIN_TOUCH]} accessibilityRole="button">
+      <Text style={[styles.primaryText, { color: colors.onPrimary }]}>{title}</Text>
     </Pressable>
   );
 }
 
 export function LinkButton({ href, title }: { href: string; title: string }) {
+  const { colors } = useTheme();
   return (
     <Link href={href as never} asChild>
       {/* NOTE: flatten — expo-router web Slot passes style straight to <a>, arrays crash react-dom. */}
-      <Pressable style={StyleSheet.flatten([styles.linkBtn, MIN_TOUCH])} accessibilityRole="button">
-        <Text style={styles.linkBtnText}>{title}</Text>
+      <Pressable style={StyleSheet.flatten([styles.linkBtn, { backgroundColor: colors.card, borderColor: colors.border }, MIN_TOUCH])} accessibilityRole="button">
+        <Text style={[styles.linkBtnText, { color: colors.text }]}>{title}</Text>
       </Pressable>
     </Link>
   );
 }
 
 export function GhostButton({ href, title }: { href: string; title: string }) {
+  const { colors } = useTheme();
   return (
     <Link href={href as never} asChild>
-      <Pressable style={StyleSheet.flatten([styles.ghostBtn, MIN_TOUCH])} accessibilityRole="button">
-        <Text style={styles.ghostBtnText}>{title}</Text>
+      <Pressable style={StyleSheet.flatten([styles.ghostBtn, { borderColor: colors.text }, MIN_TOUCH])} accessibilityRole="button">
+        <Text style={[styles.ghostBtnText, { color: colors.text }]}>{title}</Text>
       </Pressable>
     </Link>
   );
 }
 
 export function Bullet({ children }: { children: React.ReactNode }) {
+  const { colors } = useTheme();
   return (
     <View style={styles.bulletRow}>
-      <Text style={styles.bulletDot}>•</Text>
-      <Text style={styles.bulletText}>{children}</Text>
+      <Text style={[styles.bulletDot, { color: colors.text }]}>•</Text>
+      <Text style={[styles.bulletText, { color: colors.text }]}>{children}</Text>
     </View>
   );
 }

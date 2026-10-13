@@ -39,7 +39,8 @@
           "icon": "./assets/adaptive-icon.png",
           "color": "#0a0a23"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {}
   }

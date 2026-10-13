@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Theme } from '../../src/theme';
 import { CODED_OPTIONS, AI_TOOLS_OPTIONS, GOAL_OPTIONS, EXPLAINERS, type WizardAnswers } from '../../src/data/onboarding';
 import { recommend, wizardProgress } from '../../src/lib/onboarding';
+import { saveOnboardingRemote } from '../../src/lib/authRepo';
 import { useAuth } from '../../src/store/store';
 import { Screen, H1, H2, Body, Muted, Eyebrow, Card, Chip, ProgressBar, LinkButton } from '../../src/components/ui';
 
@@ -26,7 +27,7 @@ const GOAL_TO_PROFILE: Record<WizardAnswers['goal'], string> = {
 export default function Assessment() {
   const [step, setStep] = useState<Step>({ kind: 'q1' });
   const [answers, setAnswers] = useState<Partial<WizardAnswers>>({});
-  const { setExperience, setGoals, setCurrentLevel } = useAuth();
+  const { auth, setExperience, setGoals, setCurrentLevel } = useAuth();
 
   const stepIndex = step.kind === 'q1' ? 0 : step.kind === 'q2' ? 1 : step.kind === 'q3' ? 2 : step.kind === 'exp' ? 3 + step.i : TOTAL_STEPS;
   const rec = useMemo(
@@ -40,6 +41,12 @@ export default function Assessment() {
     if (answers.goal) setGoals([GOAL_TO_PROFILE[answers.goal]]);
     if (rec) setCurrentLevel(Number(rec.startLevelId.slice(1)) || 1);
     await AsyncStorage.setItem('amp-onboarding', JSON.stringify({ ...answers, at: new Date().toISOString() })).catch(() => {});
+    // Phase 2: best-effort Supabase sync (offline → no-op, never blocks).
+    try {
+      if (answers.coded && answers.aiTools && answers.goal && rec && auth.userId) {
+        await saveOnboardingRemote(auth.userId, answers as WizardAnswers, rec, GOAL_TO_PROFILE[answers.goal]);
+      }
+    } catch { /* offline — local data already saved */ }
     router.replace('/(tabs)/home');
   }
 

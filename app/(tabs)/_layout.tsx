@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { Theme } from '../../src/theme';
+import { useTheme } from '../../src/store/theme';
 
 // Melrose-style footer: thin minimal line icon per destination + micro uppercase labels.
 const ICONS = {
@@ -18,15 +19,16 @@ function tabIcon(name: keyof typeof ICONS) {
 }
 
 export default function TabsLayout() {
+  const { colors } = useTheme();
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        headerStyle: { backgroundColor: Theme.colors.bg },
-        headerTintColor: '#000000',
-        tabBarStyle: { backgroundColor: Theme.colors.bg, borderTopColor: Theme.colors.border },
-        tabBarActiveTintColor: Theme.colors.primary,
-        tabBarInactiveTintColor: Theme.colors.muted,
+        headerStyle: { backgroundColor: colors.bg },
+        headerTintColor: colors.text,
+        tabBarStyle: { backgroundColor: colors.bg, borderTopColor: colors.border },
+        tabBarActiveTintColor: colors.text,
+        tabBarInactiveTintColor: colors.muted,
         tabBarLabelStyle: {
           fontFamily: Theme.fonts.bold,
           fontSize: 10,

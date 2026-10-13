@@ -11,8 +11,9 @@ import { getLesson, LESSONS } from '../../src/data/curriculum';
 import { Chapters } from '../../src/components/blocks';
 import { Screen, H1, Body, Muted, Eyebrow, Card, Chip, LinkButton } from '../../src/components/ui';
 import { MelroseIcon } from '../../src/components/icons';
-import { useProgress } from '../../src/store/store';
+import { useAuth, useProgress } from '../../src/store/store';
 import { loadPlayback, savePosition, clearPosition, formatClock, chapterAt } from '../../src/lib/playback';
+import { grantFor } from '../../src/lib/videoAccess';
 
 const RATES = [0.75, 1, 1.25, 1.5, 2];
 
@@ -29,8 +30,12 @@ export default function VideoScreen() {
   const [cc, setCc] = useState(true);
   const [ready, setReady] = useState(false);
   const { toggleComplete, completed } = useProgress();
+  const { auth } = useAuth();
+  const grant = lesson
+    ? grantFor(lessonId, { userId: auth.userId, role: auth.role, enrolled: auth.enrolled || auth.enrollmentStatus === 'active' || auth.enrollmentStatus === 'completed' }, lesson.videoUrl)
+    : { ok: false as const, code: 402 as const, reason: 'No lesson.' };
 
-  const player = useVideoPlayer(lesson ? lesson.videoUrl : '', (p) => {
+  const player = useVideoPlayer(grant.ok ? grant.url : '', (p) => {
     p.playbackRate = 1;
   });
 
@@ -142,6 +147,7 @@ export default function VideoScreen() {
           </Pressable>
         )}
 
+        {grant.ok ? (
         <View style={[s.playerWrap, { aspectRatio: isTablet ? 21 / 9 : 16 / 9 }]}>
           <VideoView
             ref={viewRef}
@@ -162,6 +168,13 @@ export default function VideoScreen() {
             </View>
           )}
         </View>
+        ) : (
+        <Card>
+          <Body>{grant.reason}</Body>
+          <Muted>{grant.code === 401 ? 'Error 401 — sign in first.' : 'Error 402 — enrollment required.'} Videos never play from public links.</Muted>
+          <LinkButton href={grant.code === 401 ? '/login' : '/enroll'} title={grant.code === 401 ? 'Sign in to watch' : 'Enroll to unlock videos'} />
+        </Card>
+        )}
         <Muted>Portrait on phone, landscape on fullscreen — rotate anytime. Streaming adapts to your connection.</Muted>
 
         <View style={s.controls}>

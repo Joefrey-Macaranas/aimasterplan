@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
 import { Theme } from '../../src/theme';
+import { useTheme } from '../../src/store/theme';
 import { LEVELS, MODULES, getLessonsForModule } from '../../src/data/curriculum';
 import { JOURNEY_MAP } from '../../src/constants/branding';
 import { useProgress } from '../../src/store/store';
@@ -23,6 +24,7 @@ const LEVEL_JOURNEY: Record<string, string> = {
 
 export default function Roadmap() {
   const { completed } = useProgress();
+  const { colors } = useTheme();
   const [open, setOpen] = useState<string | null>('L1');
 
   return (
@@ -44,10 +46,10 @@ export default function Roadmap() {
               <Card key={lv.id}>
                 <Pressable onPress={() => setOpen(expanded ? null : lv.id)} style={s.tap}>
                   <View style={s.row}>
-                    <Text style={s.lvT}>
+                    <Text style={[s.lvT, { color: colors.text }]}>
                       Level {lv.index}: {lv.title}
                     </Text>
-                    <Text style={s.chev}>{expanded ? '−' : '+'}</Text>
+                    <Text style={[s.chev, { color: colors.accent }]}>{expanded ? '−' : '+'}</Text>
                   </View>
                   <Body>{lv.summary}</Body>
                   <Chip label={LEVEL_JOURNEY[lv.id] ?? ''} tone="accent" />
@@ -61,13 +63,13 @@ export default function Roadmap() {
                     const lessons = getLessonsForModule(m.id);
                     const mDone = lessons.filter((l) => completed.includes(l.id)).length;
                     return (
-                      <View key={m.id} style={s.mod}>
+                      <View key={m.id} style={[s.mod, { borderTopColor: colors.border }]}>
                         <Link href={`/module/${m.id}` as never} asChild>
-                          <Pressable style={s.modTap}>
-                            <Text style={s.mT}>
-                              {m.title} — <Text style={s.mS}>{m.summary}</Text>
+                          <Pressable style={StyleSheet.flatten([s.modTap])}>
+                            <Text style={[s.mT, { color: colors.accent }]}>
+                              {m.title} — <Text style={[s.mS, { color: colors.muted }]}>{m.summary}</Text>
                             </Text>
-                            <Text style={s.mMeta}>
+                            <Text style={[s.mMeta, { color: colors.muted }]}>
                               {mDone}/{lessons.length} • Open module ›
                             </Text>
                           </Pressable>
@@ -76,13 +78,13 @@ export default function Roadmap() {
                           const done = completed.includes(l.id);
                           return (
                             <Link key={l.id} href={`/lesson/${l.id}` as never} asChild>
-                              <Pressable style={StyleSheet.flatten([s.lesson, done && s.lessonDone])}>
-                                <Text style={s.lessonDot}>{done ? '✓' : '○'}</Text>
+                              <Pressable style={StyleSheet.flatten([s.lesson, { backgroundColor: colors.surface, borderColor: done ? colors.success : colors.border }])}>
+                                <Text style={[s.lessonDot, { color: colors.success }]}>{done ? '✓' : '○'}</Text>
                                 <View style={{ flex: 1 }}>
-                                  <Text style={s.lessonT}>
+                                  <Text style={[s.lessonT, { color: colors.text }]}>
                                     {l.id} — {l.title}
                                   </Text>
-                                  <Text style={s.lessonS}>
+                                  <Text style={[s.lessonS, { color: colors.muted }]}>
                                     {l.objective} • {l.minutes} min • {l.difficulty}
                                   </Text>
                                 </View>

@@ -1,6 +1,6 @@
 // Email verification + password reset confirmation (6-digit demo codes).
 import { useState } from 'react';
-import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { router } from 'expo-router';
 import { Theme } from '../../src/theme';
 import { isValidEmail, passwordIssues } from '../../src/lib/auth';
@@ -72,6 +72,7 @@ export default function Verify() {
 
   return (
     <Screen>
+      <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 24, flexGrow: 1 }}>
       <Eyebrow>VERIFY • {auth.email ?? 'NO ACCOUNT YET'} {auth.emailVerified ? '• VERIFIED ✓' : '• UNVERIFIED'}</Eyebrow>
       <H1>{tab === 'Verify email' ? 'Verify your email' : 'Reset password'}</H1>
       <Body>
@@ -121,6 +122,7 @@ export default function Verify() {
         </Card>
       )}
       <View style={{ height: 24 }} />
+      </ScrollView>
     </Screen>
   );
 }
